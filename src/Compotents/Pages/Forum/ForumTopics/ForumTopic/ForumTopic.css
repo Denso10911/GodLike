@@ -1,0 +1,16 @@
+.forum__topic a {
+  display: flex;
+  text-decoration: none;
+  color: white;
+  padding: 8px;
+}
+
+.forum__topic a.active {
+  color: rgb(199, 199, 199);
+  background-color: rgb(73, 73, 73);
+}
+
+.forum__topic h4 {
+  margin: 0;
+  padding-left: 5px;
+}

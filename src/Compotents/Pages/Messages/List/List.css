@@ -1,0 +1,11 @@
+.list__item a {
+  text-decoration: none;
+  display: block;
+  color: white;
+  width: auto;
+  padding: 10px;
+}
+
+.list__item a.active {
+  background-color: rgb(68, 68, 68);
+}

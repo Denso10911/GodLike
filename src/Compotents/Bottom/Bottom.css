@@ -1,0 +1,38 @@
+.bottom {
+  width: 100%;
+  background: #000;
+  padding-bottom: 40px;
+}
+
+.bottom__links {
+  display: flex;
+  padding-top: 60px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.bottom__links img {
+  padding-right: 30px;
+  padding-bottom: 40px;
+  width: auto;
+  height: 50px;
+}
+
+.bottom__aboutCompany,
+.bottom__rules {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.bottom__rules {
+  display: flex;
+}
+
+.bottom__rules_l {
+  padding-right: 10px;
+  border-right: 1px solid white;
+}
+
+.bottom__rules_r {
+  padding-left: 10px;
+}

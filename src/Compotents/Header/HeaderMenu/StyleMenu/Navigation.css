@@ -1,0 +1,19 @@
+.nav__list {
+  list-style-type: none;
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(7, 1fr);
+}
+.nav__item {
+  display: flex;
+  align-items: center;
+}
+
+.nav__item a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav__item a.active {
+  color: Red;
+}

@@ -1,0 +1,20 @@
+.content__item {
+  padding: 5px;
+  width: 30%;
+  text-align: center;
+}
+
+.content__item svg {
+  padding-top: 10px;
+  font-size: 4rem;
+}
+
+.content__title {
+  padding-top: 20px;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.content__text {
+  padding-top: 20px;
+}

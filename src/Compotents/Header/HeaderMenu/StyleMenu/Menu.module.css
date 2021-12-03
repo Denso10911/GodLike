@@ -1,0 +1,12 @@
+.menu__vraper {
+  width: 100%;
+  background-color: rgb(29, 29, 29);
+  padding: 15px 0;
+}
+
+.menu__container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+}

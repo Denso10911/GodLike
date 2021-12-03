@@ -1,0 +1,8 @@
+.content {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding-bottom: 40px;
+}

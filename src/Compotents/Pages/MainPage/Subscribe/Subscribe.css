@@ -1,0 +1,34 @@
+.subscribe {
+  width: 100%;
+  background-color: rgb(31, 30, 30);
+  padding-bottom: 40px;
+}
+
+.subscribe__title {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 3rem;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.subscribe__send {
+  display: flex;
+  justify-content: center;
+}
+
+.subscribe__area {
+  width: 30%;
+}
+
+.subscribe__button {
+  height: 20px;
+}
+
+.subscribe__input {
+  border-bottom: 1px solid #fff;
+}
+
+.subscribe__text {
+  font-size: 13px;
+}

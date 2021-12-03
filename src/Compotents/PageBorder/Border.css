@@ -1,0 +1,39 @@
+.pageBorder .pageBorder_r,
+.pageBorder .pageBorder_l,
+.pageBorder .pageBorder_t,
+.pageBorder .pageBorder_b {
+  position: fixed;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-size: 100% 100%;
+  z-index: 2000;
+}
+
+.pageBorder_r {
+  background-image: url(https://wp.nkdev.info/godlike/wp-content/themes/godlike/assets/images/border-right.png);
+  width: 100px;
+  right: 0;
+  height: 100%;
+}
+.pageBorder_l {
+  background-image: url(https://wp.nkdev.info/godlike/wp-content/themes/godlike/assets/images/border-left.png);
+  width: 100px;
+  left: 0;
+  height: 100%;
+}
+
+.pageBorder_t {
+  background-image: url(https://wp.nkdev.info/godlike/wp-content/themes/godlike/assets/images/border-top.png);
+  width: 100%;
+  top: 0;
+  height: 100px;
+}
+.pageBorder_b {
+  background-image: url(https://wp.nkdev.info/godlike/wp-content/themes/godlike/assets/images/border-bottom.png);
+  width: 100%;
+  bottom: 0;
+  height: 100px;
+}

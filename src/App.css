@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+}
+
+.body {
+  color: white;
+  background-color: black;
+  min-height: 100vh;
+}

@@ -1,0 +1,67 @@
+.background {
+  width: 100%;
+  background-color: black;
+  background-image: url(./raid-header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 12rem;
+  position: relative;
+}
+
+.get {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: rgb(39, 39, 39);
+  position: absolute;
+  height: 3rem;
+  top: 80%;
+  left: calc((100vw - 82%) / 2);
+}
+
+.logo,
+.icons {
+  display: flex;
+}
+
+.logo img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.get__title {
+  margin: 0 0 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.icons {
+  height: 100%;
+  align-items: center;
+}
+
+.icons div {
+  margin-left: 8px;
+}
+
+.plariumPlay img {
+  height: 3rem;
+}
+
+.xbox,
+.apple {
+  border-radius: 50%;
+  background-color: rgb(77, 77, 77);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
