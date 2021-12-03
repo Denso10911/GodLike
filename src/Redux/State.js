@@ -1,3 +1,6 @@
+const NEW_MESSAGE = 'NEW-MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+
 let store = {
   _state: {
     messages: {
@@ -46,5 +49,11 @@ let store = {
     }
   },
 }
+
+export const newMessageAction = () => ({ type: NEW_MESSAGE })
+export const onMessageChangeAction = (text) => ({
+  type: UPDATE_NEW_MESSAGE_TEXT,
+  newText: text,
+})
 
 export default store

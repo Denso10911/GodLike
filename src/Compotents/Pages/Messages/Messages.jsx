@@ -2,6 +2,7 @@ import './Messages.css'
 import List from './List/List'
 import Dialog from './Dialog/Dialog'
 import React from 'react'
+import { newMessageAction, onMessageChangeAction } from '../../../Redux/State'
 
 const Messages = (props) => {
   let listsElement = props.messages.lists.map((l) => (
@@ -12,18 +13,11 @@ const Messages = (props) => {
   ))
   let sentAreaMessage = React.createRef()
 
-  let sentMessage = () => {
-    props.dispatch({
-      type: 'NEW-MESSAGE',
-    })
-  }
+  let sentMessage = () => props.dispatch(newMessageAction())
 
   let onMessageChange = () => {
     let text = sentAreaMessage.current.value
-    props.dispatch({
-      type: 'UPDATE-NEW-MESSAGE-TEXT',
-      newText: text,
-    })
+    props.dispatch(onMessageChangeAction(text))
   }
 
   return (
