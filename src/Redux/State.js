@@ -1,6 +1,9 @@
 const NEW_MESSAGE = 'NEW-MESSAGE'
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
+const NEW_POST = 'NEW-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+
 let store = {
   _state: {
     messages: {
@@ -20,7 +23,14 @@ let store = {
       newMessageText: 'Write your message',
     },
 
-    forumToopicsData: ['Clan', 'Guides and Tutorials', 'Tavern'],
+    forum: {
+      posts: [
+        { id: 1, text: 'What are you thinking for', likes: 10 },
+        { id: 2, text: 'About this game', likes: 15 },
+      ],
+      forumToopicsData: ['Clan', 'Guides and Tutorials', 'Tavern'],
+      newPostText: '',
+    },
   },
 
   getState() {
@@ -35,7 +45,7 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === 'NEW-MESSAGE') {
+    if (action.type === NEW_MESSAGE) {
       let message = {
         id: this._state.messages.dialogs.length + 1,
         text: this._state.messages.newMessageText,
@@ -43,8 +53,20 @@ let store = {
       this._state.messages.dialogs.push(message)
       this._state.messages.newMessageText = ''
       this._callSubscriber(this._state)
-    } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
       this._state.messages.newMessageText = action.newText
+      this._callSubscriber(this._state)
+    } else if (action.type === NEW_POST) {
+      let post = {
+        id: this._state.forum.posts.length + 1,
+        text: this._state.forum.newPostText,
+        likes: this._state.forum.posts.likes,
+      }
+      this._state.forum.posts.push(post)
+      this._state.forum.newPostText = ''
+      this._callSubscriber(this._state)
+    } else if (action.type === UPDATE_NEW_POST_TEXT) {
+      this._state.forum.newPostText = action.newText
       this._callSubscriber(this._state)
     }
   },
@@ -53,6 +75,11 @@ let store = {
 export const newMessageAction = () => ({ type: NEW_MESSAGE })
 export const onMessageChangeAction = (text) => ({
   type: UPDATE_NEW_MESSAGE_TEXT,
+  newText: text,
+})
+export const newPostAction = () => ({ type: NEW_POST })
+export const onPostChangeAction = (text) => ({
+  type: UPDATE_NEW_POST_TEXT,
   newText: text,
 })
 

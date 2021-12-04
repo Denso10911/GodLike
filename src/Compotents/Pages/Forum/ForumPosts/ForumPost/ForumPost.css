@@ -1,0 +1,32 @@
+.forumPost {
+  display: flex;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.formPost__avatar {
+  width: 50px;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfVJMOZVxPgXbKX7ijNQqLhAefU90Q0fxSiA&usqp=CAU');
+  background-size: cover;
+  height: 50px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+  /* background-position: 60% 50%; */
+}
+
+.forumPost__content {
+  padding-left: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formPost__likes {
+  display: flex;
+}
+
+.formPost__icon {
+  margin-right: 5px;
+}

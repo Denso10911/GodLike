@@ -1,6 +1,7 @@
 import ForumTopics from './ForumTopics/ForumTopics'
 import GetGodLike from './GetGodLike/GetGodLike'
 import './Forum.css'
+import ForumPosts from './ForumPosts/ForumPosts'
 
 const Forum = (props) => {
   return (
@@ -8,7 +9,8 @@ const Forum = (props) => {
       <GetGodLike />
 
       <div className="forum__content">
-        <ForumTopics forumToopicsData={props.forumToopicsData} />
+        <ForumTopics forumToopicsData={props.forum.forumToopicsData} />
+        <ForumPosts dispatch={props.dispatch} forum={props.forum} />
       </div>
     </div>
   )

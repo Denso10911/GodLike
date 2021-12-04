@@ -1,6 +1,8 @@
 .forum__topics {
   background-color: rgb(36, 36, 36);
   margin-top: 20px;
+  width: 30%;
+  height: 100%;
 }
 
 .forum__topics h3 {

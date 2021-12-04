@@ -8,6 +8,7 @@ import {
   faGamepad,
   faFire,
   faMedal,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css'
@@ -32,7 +33,8 @@ library.add(
   faSignInAlt,
   faGamepad,
   faFire,
-  faMedal
+  faMedal,
+  faHeart
 )
 
 export default App

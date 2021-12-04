@@ -2,4 +2,15 @@
   padding: 0 60px;
   width: 70%;
   margin: 5px auto;
+  overflow-y: scroll;
+}
+
+.dialog::-webkit-scrollbar {
+  width: 3px;
+}
+
+.dialog::-webkit-scrollbar-thumb {
+  background-color: #c7c7c7;
+  border-radius: 10px;
+  height: 20px;
 }
