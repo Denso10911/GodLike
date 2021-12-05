@@ -1,7 +1,16 @@
 const NEW_POST = 'NEW-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-const ForumReducer = (state, action) => {
+let initialState = {
+  posts: [
+    { id: 1, text: 'What are you thinking for', likes: 10 },
+    { id: 2, text: 'About this game', likes: 15 },
+  ],
+  forumToopicsData: ['Clan', 'Guides and Tutorials', 'Tavern'],
+  newPostText: '',
+}
+
+const ForumReducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_POST:
       let post = {

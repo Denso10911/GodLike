@@ -19,7 +19,6 @@ let store = {
       ],
       newMessageText: 'Write your message',
     },
-
     forum: {
       posts: [
         { id: 1, text: 'What are you thinking for', likes: 10 },
@@ -29,18 +28,15 @@ let store = {
       newPostText: '',
     },
   },
-
   getState() {
     return this._state
   },
-
   _callSubscriber() {
     console.log('state')
   },
   subscribe(observer) {
     this._callSubscriber = observer
   },
-
   dispatch(action) {
     this._state.messages = MessagesReducer(this._state.messages, action)
     this._state.forum = ForumReducer(this._state.forum, action)

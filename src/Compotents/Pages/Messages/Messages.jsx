@@ -33,6 +33,7 @@ const Messages = (props) => {
             onChange={onMessageChange}
             ref={sentAreaMessage}
             value={props.messages.newMessageText}
+            placeholder="Write your message"
           />
           <button onClick={sentMessage}></button>
         </div>
