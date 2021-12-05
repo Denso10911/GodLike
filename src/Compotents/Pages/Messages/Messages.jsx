@@ -2,7 +2,10 @@ import './Messages.css'
 import List from './List/List'
 import Dialog from './Dialog/Dialog'
 import React from 'react'
-import { newMessageAction, onMessageChangeAction } from '../../../Redux/State'
+import {
+  newMessageAction,
+  onMessageChangeAction,
+} from '../../../Redux/MessagesReducer'
 
 const Messages = (props) => {
   let listsElement = props.messages.lists.map((l) => (

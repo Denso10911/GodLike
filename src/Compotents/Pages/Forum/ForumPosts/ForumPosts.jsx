@@ -1,4 +1,7 @@
-import { newPostAction, onPostChangeAction } from '../../../../Redux/State'
+import {
+  newPostAction,
+  onPostChangeAction,
+} from '../../../../Redux/ForumReducer'
 import React from 'react'
 import ForumPost from './ForumPost/ForumPost'
 import './ForumPosts.css'
