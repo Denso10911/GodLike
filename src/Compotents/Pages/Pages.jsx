@@ -1,8 +1,8 @@
 import { Switch, Route } from 'react-router-dom'
 
 import MainPage from './MainPage/MainPage'
-import Messages from './Messages/Messages'
 import Forum from './Forum/Forum'
+import MessagesContainer from './Messages/MessagesContainer'
 
 const Pages = (props) => {
   return (
@@ -14,7 +14,7 @@ const Pages = (props) => {
         <Forum forum={props.state.forum} dispatch={props.dispatch} />
       </Route>
       <Route path="/messages">
-        <Messages messages={props.state.messages} dispatch={props.dispatch} />
+        <MessagesContainer store={props.store} />
       </Route>
     </Switch>
   )

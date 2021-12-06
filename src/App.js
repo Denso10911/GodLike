@@ -21,7 +21,11 @@ const App = (props) => {
     <div className="body">
       <Header />
       <Border />
-      <Pages state={props.state} dispatch={props.dispatch} />
+      <Pages
+        state={props.state}
+        dispatch={props.dispatch}
+        store={props.store}
+      />
     </div>
   )
 }
