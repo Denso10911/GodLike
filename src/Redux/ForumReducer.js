@@ -29,8 +29,8 @@ const ForumReducer = (state = initialState, action) => {
   }
 }
 
-export const newPostAction = () => ({ type: NEW_POST })
-export const onPostChangeAction = (text) => ({
+export const sentNewPostActionCreator = () => ({ type: NEW_POST })
+export const updateNewPostTextActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
 })

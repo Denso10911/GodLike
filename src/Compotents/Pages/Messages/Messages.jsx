@@ -10,13 +10,14 @@ const Messages = (props) => {
   let dialogElement = props.messages.dialogs.map((d) => (
     <Dialog text={d.text} />
   ))
+
   let sentAreaMessage = React.createRef()
 
-  let sentMessage = () => props.newMessageAction()
+  let onMessageSentClick = () => props.sentNewMessageAction()
 
-  let onMessageChange = () => {
+  let onMessageTypeChange = () => {
     let text = sentAreaMessage.current.value
-    props.onMessageChangeAction(text)
+    props.updateNewTextMessageAction(text)
   }
 
   return (
@@ -26,12 +27,12 @@ const Messages = (props) => {
         <div className="dialog">{dialogElement}</div>
         <div className="sentArea">
           <textarea
-            onChange={onMessageChange}
+            onChange={onMessageTypeChange}
             ref={sentAreaMessage}
             value={props.messages.newMessageText}
             placeholder="Write your message"
           />
-          <button onClick={sentMessage}></button>
+          <button onClick={onMessageSentClick}></button>
         </div>
       </div>
     </div>

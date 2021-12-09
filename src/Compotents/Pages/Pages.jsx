@@ -14,7 +14,7 @@ const Pages = (props) => {
         <Forum store={props.store} />
       </Route>
       <Route path="/messages">
-        <MessagesContainer store={props.store} />
+        <MessagesContainer />
       </Route>
     </Switch>
   )

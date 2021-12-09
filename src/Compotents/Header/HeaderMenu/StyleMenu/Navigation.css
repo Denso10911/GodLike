@@ -1,8 +1,8 @@
 .nav__list {
   list-style-type: none;
-  display: grid;
+  display: flex;
   height: 100%;
-  grid-template-columns: repeat(7, 1fr);
+  justify-content: space-between;
 }
 .nav__item {
   display: flex;

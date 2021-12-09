@@ -10,7 +10,7 @@ const Forum = (props) => {
 
       <div className="forum__content">
         <ForumTopicsContainer store={props.store} />
-        <ForumPostsContainer store={props.store} />
+        <ForumPostsContainer />
       </div>
     </div>
   )

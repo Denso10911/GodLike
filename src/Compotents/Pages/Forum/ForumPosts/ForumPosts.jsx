@@ -10,12 +10,12 @@ const ForumPosts = (props) => {
   ))
 
   let onPostSentClick = () => {
-    props.newPostAction()
+    props.sentNewPostAction()
   }
 
   let onPostTextChange = () => {
     let newPostPoint = sentAreaPostText.current.value
-    props.onPostChangeAction(newPostPoint)
+    props.updateNewPostTextAction(newPostPoint)
   }
 
   return (
