@@ -16,16 +16,12 @@ import Header from './Compotents/Header/Header'
 import Border from './Compotents/PageBorder/Border'
 import Pages from './Compotents/Pages/Pages'
 
-const App = (props) => {
+const App = () => {
   return (
     <div className="body">
       <Header />
       <Border />
-      <Pages
-        state={props.state}
-        dispatch={props.dispatch}
-        store={props.store}
-      />
+      <Pages />
     </div>
   )
 }

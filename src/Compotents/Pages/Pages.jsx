@@ -11,7 +11,7 @@ const Pages = (props) => {
         <MainPage />
       </Route>
       <Route path="/forum">
-        <Forum store={props.store} />
+        <Forum />
       </Route>
       <Route path="/messages">
         <MessagesContainer />

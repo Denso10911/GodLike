@@ -12,18 +12,24 @@ let initialState = {
 
 const ForumReducer = (state = initialState, action) => {
   switch (action.type) {
-    case NEW_POST:
+    case NEW_POST: {
       let post = {
         id: state.posts.length + 1,
         text: state.newPostText,
         likes: 0,
       }
-      state.posts.push(post)
-      state.newPostText = ''
-      return state
-    case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText
-      return state
+
+      let stateCopy = { ...state }
+      stateCopy.posts = [...state.posts]
+      stateCopy.posts.push(post)
+      stateCopy.newPostText = ''
+      return stateCopy
+    }
+    case UPDATE_NEW_POST_TEXT: {
+      let stateCopy = { ...state }
+      stateCopy.newPostText = action.newText
+      return stateCopy
+    }
     default:
       return state
   }

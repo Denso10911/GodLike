@@ -3,13 +3,13 @@ import './Forum.css'
 import ForumTopicsContainer from './ForumTopics/ForumTopicsContainer'
 import ForumPostsContainer from './ForumPosts/ForumPostsContainer'
 
-const Forum = (props) => {
+const Forum = () => {
   return (
     <div className="forum">
       <GetGodLike />
 
       <div className="forum__content">
-        <ForumTopicsContainer store={props.store} />
+        <ForumTopicsContainer />
         <ForumPostsContainer />
       </div>
     </div>
