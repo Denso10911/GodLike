@@ -27,7 +27,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   return {
-    forum: state.forum,
+    forum: state.forumPage,
   }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -7,7 +7,7 @@ import Messages from './Messages'
 
 const mapStateToProps = (state) => {
   return {
-    messages: state.messages,
+    messages: state.messagesPage,
   }
 }
 

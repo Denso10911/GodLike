@@ -21,7 +21,7 @@ const Navigation = () => {
           <Link to="/forum">Forum</Link>
         </li>
         <li className="nav__item">
-          <Link to="/store">Store</Link>
+          <Link to="/friends">Friends</Link>
         </li>
         <li className="nav__item">
           <Link to="/messages">Messages</Link>
