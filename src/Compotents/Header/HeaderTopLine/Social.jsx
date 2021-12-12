@@ -1,21 +1,14 @@
 import './StyleTopLine/Social.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SocialIcons from './SocialIcons/SocialIcons'
 
 const Social = () => {
   return (
     <div className="links">
-      <div className="twitter">
-        <FontAwesomeIcon icon={['fab', 'twitter']} />
-      </div>
-      <div className="dribbble">
-        <FontAwesomeIcon icon={['fab', 'dribbble']} />
-      </div>
-      <div className="instagram">
-        <FontAwesomeIcon icon={['fab', 'instagram']} />
-      </div>
-      <div className="pinterest">
-        <FontAwesomeIcon icon={['fab', 'pinterest']} />
-      </div>
+      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'twitter']} />} />
+      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'dribbble']} />} />
+      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'instagram']} />} />
+      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'pinterest']} />} />
     </div>
   )
 }

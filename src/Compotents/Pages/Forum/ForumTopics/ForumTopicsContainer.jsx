@@ -4,7 +4,7 @@ import './ForumTopics.css'
 
 const mapStateToProps = (state) => {
   return {
-    forumToopicsData: state.forum.forumToopicsData,
+    forumToopicsData: state.forumPage.forumToopicsData,
   }
 }
 

@@ -1,3 +1,29 @@
 .aboutUser {
-  padding-left: 50px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutUser__foto {
+  width: 100px;
+  height: 120px;
+}
+
+.aboutUser__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aboutUser__infrmation {
+  width: calc(100% - 120px);
+  padding: 0 10px;
+}
+
+.aboutUser__fullName {
+  text-align: center;
+}
+.aboutUser__fullName,
+.aboutUser__sity {
+  margin-bottom: 2vh;
 }
