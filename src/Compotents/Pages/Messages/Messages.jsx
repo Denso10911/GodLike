@@ -2,10 +2,6 @@ import './Messages.css'
 import List from './List/List'
 import Dialog from './Dialog/Dialog'
 import React from 'react'
-import {
-  newMessageAction,
-  onMessageChangeAction,
-} from '../../../Redux/MessagesReducer'
 
 const Messages = (props) => {
   let listsElement = props.messages.lists.map((l) => (
@@ -14,13 +10,14 @@ const Messages = (props) => {
   let dialogElement = props.messages.dialogs.map((d) => (
     <Dialog text={d.text} />
   ))
+
   let sentAreaMessage = React.createRef()
 
-  let sentMessage = () => props.dispatch(newMessageAction())
+  let onMessageSentClick = () => props.sentNewMessageAction()
 
-  let onMessageChange = () => {
+  let onMessageTypeChange = () => {
     let text = sentAreaMessage.current.value
-    props.dispatch(onMessageChangeAction(text))
+    props.updateNewTextMessageAction(text)
   }
 
   return (
@@ -30,11 +27,12 @@ const Messages = (props) => {
         <div className="dialog">{dialogElement}</div>
         <div className="sentArea">
           <textarea
-            onChange={onMessageChange}
+            onChange={onMessageTypeChange}
             ref={sentAreaMessage}
             value={props.messages.newMessageText}
+            placeholder="Write your message"
           />
-          <button onClick={sentMessage}></button>
+          <button onClick={onMessageSentClick}></button>
         </div>
       </div>
     </div>

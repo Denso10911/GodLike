@@ -6,7 +6,9 @@ const Navigation = () => {
     <div className="nav">
       <ul className="nav__list">
         <li className="nav__item">
-          <Link to="/">Hasdome</Link>
+          <Link to="/" className="nav__link">
+            Hasdome
+          </Link>
         </li>
         <li className="nav__item">
           <Link to="/features">Features</Link>
@@ -21,7 +23,7 @@ const Navigation = () => {
           <Link to="/forum">Forum</Link>
         </li>
         <li className="nav__item">
-          <Link to="/store">Store</Link>
+          <Link to="/friends">Friends</Link>
         </li>
         <li className="nav__item">
           <Link to="/messages">Messages</Link>

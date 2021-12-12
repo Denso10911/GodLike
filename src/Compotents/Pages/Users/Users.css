@@ -1,0 +1,37 @@
+.users {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user {
+  margin: 1.25524vw auto;
+  border: 1px solid white;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user button {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 0 auto 10px;
+  color: white;
+  border: 1px solid rgb(180, 179, 179);
+  font-weight: bold;
+}
+
+.user button:hover {
+  box-shadow: 0px 0px 10px white;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.button__unfollow {
+  background-color: rgb(105, 87, 87);
+}
+
+.button__follow {
+  background-color: rgb(87, 105, 98);
+}

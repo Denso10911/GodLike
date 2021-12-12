@@ -1,7 +1,3 @@
-import {
-  newPostAction,
-  onPostChangeAction,
-} from '../../../../Redux/ForumReducer'
 import React from 'react'
 import ForumPost from './ForumPost/ForumPost'
 import './ForumPosts.css'
@@ -14,12 +10,12 @@ const ForumPosts = (props) => {
   ))
 
   let onPostSentClick = () => {
-    props.dispatch(newPostAction())
+    props.sentNewPostAction()
   }
 
   let onPostTextChange = () => {
     let newPostPoint = sentAreaPostText.current.value
-    props.dispatch(onPostChangeAction(newPostPoint))
+    props.updateNewPostTextAction(newPostPoint)
   }
 
   return (
