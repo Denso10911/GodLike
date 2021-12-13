@@ -5,48 +5,56 @@ const SET_USERS = 'SET_USERS'
 let initialState = {
   users: [
     {
-      userId: 1,
-      myFriend: true,
-      firstName: 'Denis',
+      id: 1,
+      followed: true,
+      name: 'Denis',
       secondName: 'Gerasymov',
       country: 'Ukraine',
       sity: 'Kyiv',
-      credo: 'Lorem ipsum dolor sit amet.',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrOdW6rrJSCxzu6TbqU7shTs3BUvXZKpcBQA&usqp=CAU',
+      status: 'Lorem ipsum dolor sit amet.',
+      photos: {
+        small:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrOdW6rrJSCxzu6TbqU7shTs3BUvXZKpcBQA&usqp=CAU',
+      },
     },
     {
-      userId: 2,
-      myFriend: false,
-      firstName: 'Nina',
+      id: 2,
+      followed: false,
+      name: 'Nina',
       secondName: 'Gerasymova',
       country: 'Ukraine',
       sity: 'Kyiv',
-      credo: 'Lorem ipsum dolor sit amet and bite some zdobuch',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6IEmBVP3jAWho0A5yvd-a4gQ-WpVjpwydg&usqp=CAU',
+      status: 'Lorem ipsum dolor sit amet and bite some zdobuch',
+      photos: {
+        small:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6IEmBVP3jAWho0A5yvd-a4gQ-WpVjpwydg&usqp=CAU',
+      },
     },
     {
-      userId: 3,
-      myFriend: false,
-      firstName: 'Marina',
+      id: 3,
+      followed: false,
+      name: 'Marina',
       secondName: 'Gerasymova',
       country: 'Poland',
       sity: 'Poznan',
-      credo: 'Lorem ipsum dolor sit amet.',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc6naks-1uvS59bavB1gi1clShtsGB6AoLyw&usqp=CAU',
+      status: 'Lorem ipsum dolor sit amet.',
+      photos: {
+        small:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc6naks-1uvS59bavB1gi1clShtsGB6AoLyw&usqp=CAU',
+      },
     },
     {
-      userId: 4,
-      myFriend: false,
-      firstName: 'Alex',
+      id: 4,
+      followed: false,
+      name: 'Alex',
       secondName: 'Griva',
       country: 'German',
       sity: 'Berlin',
-      credo: 'Lorem ipsum dolor sit ',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxZSFMnXkZDGsGwJbcnQEqW4_uzDZZvT6DRw&usqp=CAU',
+      status: 'Lorem ipsum dolor sit ',
+      photos: {
+        small:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxZSFMnXkZDGsGwJbcnQEqW4_uzDZZvT6DRw&usqp=CAU',
+      },
     },
   ],
 }
@@ -57,8 +65,8 @@ const UsersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.userId === action.userId) {
-            return { ...u, myFriend: true }
+          if (u.id === action.id) {
+            return { ...u, followed: true }
           }
           return u
         }),
@@ -67,8 +75,8 @@ const UsersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.userId === action.userId) {
-            return { ...u, myFriend: false }
+          if (u.id === action.id) {
+            return { ...u, followed: false }
           }
           return u
         }),
@@ -84,8 +92,8 @@ const UsersReducer = (state = initialState, action) => {
   }
 }
 
-export const followUserAC = (userId) => ({ type: FOLLOW, userId })
-export const unFollowUserAC = (userId) => ({ type: UNFOLLOW, userId })
+export const followUserAC = (id) => ({ type: FOLLOW, id })
+export const unFollowUserAC = (id) => ({ type: UNFOLLOW, id })
 export const setUsersAC = (users) => ({ type: SET_USERS, users })
 
 export default UsersReducer
