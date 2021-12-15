@@ -35,3 +35,12 @@
 .button__follow {
   background-color: rgb(87, 105, 98);
 }
+.pages {
+  margin-left: 50px;
+}
+span {
+  cursor: pointer;
+}
+.select {
+  color: #a37c7c;
+}

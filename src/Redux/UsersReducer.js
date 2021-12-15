@@ -1,64 +1,15 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const TOTAL_COUNT = 'TOTAL_COUNT'
+const CURRENT_PAGE = 'CURRENT_PAGE'
 
 let initialState = {
-  users: [
-    {
-      id: 1,
-      followed: true,
-      name: 'Denis',
-      secondName: 'Gerasymov',
-      country: 'Ukraine',
-      sity: 'Kyiv',
-      status: 'Lorem ipsum dolor sit amet.',
-      photos: {
-        small:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrOdW6rrJSCxzu6TbqU7shTs3BUvXZKpcBQA&usqp=CAU',
-      },
-    },
-    {
-      id: 2,
-      followed: false,
-      name: 'Nina',
-      secondName: 'Gerasymova',
-      country: 'Ukraine',
-      sity: 'Kyiv',
-      status: 'Lorem ipsum dolor sit amet and bite some zdobuch',
-      photos: {
-        small:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6IEmBVP3jAWho0A5yvd-a4gQ-WpVjpwydg&usqp=CAU',
-      },
-    },
-    {
-      id: 3,
-      followed: false,
-      name: 'Marina',
-      secondName: 'Gerasymova',
-      country: 'Poland',
-      sity: 'Poznan',
-      status: 'Lorem ipsum dolor sit amet.',
-      photos: {
-        small:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc6naks-1uvS59bavB1gi1clShtsGB6AoLyw&usqp=CAU',
-      },
-    },
-    {
-      id: 4,
-      followed: false,
-      name: 'Alex',
-      secondName: 'Griva',
-      country: 'German',
-      sity: 'Berlin',
-      status: 'Lorem ipsum dolor sit ',
-      photos: {
-        small:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxZSFMnXkZDGsGwJbcnQEqW4_uzDZZvT6DRw&usqp=CAU',
-      },
-    },
-  ],
+  users: [],
+  totalUsersCount: 20,
+  pageSize: 5,
+  currentPage: 1,
 }
-
 const UsersReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
@@ -84,9 +35,18 @@ const UsersReducer = (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        users: [...state.users, ...action.users],
+        users: [...action.users],
       }
-
+    case TOTAL_COUNT:
+      return {
+        ...state,
+        totalUsersCount: action.totalUsersCount,
+      }
+    case CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.currentPage,
+      }
     default:
       return state
   }
@@ -95,5 +55,13 @@ const UsersReducer = (state = initialState, action) => {
 export const followUserAC = (id) => ({ type: FOLLOW, id })
 export const unFollowUserAC = (id) => ({ type: UNFOLLOW, id })
 export const setUsersAC = (users) => ({ type: SET_USERS, users })
+export const currentPageAC = (currentPage) => ({
+  type: CURRENT_PAGE,
+  currentPage,
+})
+export const setTotalUsersCountAC = (totalUsersCount) => ({
+  type: TOTAL_COUNT,
+  totalUsersCount,
+})
 
 export default UsersReducer
