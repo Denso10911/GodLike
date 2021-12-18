@@ -1,18 +1,21 @@
 import './User.css'
 import usersPhoto from '../UsersImg/users.jpg'
+import { NavLink } from 'react-router-dom'
 
 const User = (props) => {
   return (
     <div className="aboutUser">
       <div className="aboutUser__foto">
-        <img
-          src={
-            props.userInfo.photos.small != null
-              ? props.userInfo.photos.small
-              : usersPhoto
-          }
-          alt=""
-        />
+        <NavLink to={`/profile/` + props.userInfo.id}>
+          <img
+            src={
+              props.userInfo.photos.small != null
+                ? props.userInfo.photos.small
+                : usersPhoto
+            }
+            alt=""
+          />
+        </NavLink>
       </div>
       <div className="aboutUser__infrmation">
         <div className="aboutUser__fullName">{props.userInfo.name}</div>
