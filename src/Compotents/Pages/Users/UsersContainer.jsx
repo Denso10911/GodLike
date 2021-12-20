@@ -12,13 +12,14 @@ import * as axios from 'axios'
 import Users from './Users'
 import Fetching from '../../../assets/Fetching/Fetching'
 
-class UsersComponent extends React.Component {
+class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.setFetching(true)
 
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.setFetching(false)
@@ -32,7 +33,8 @@ class UsersComponent extends React.Component {
     this.props.setCurrentPage(n)
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${n}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${n}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.setFetching(false)
@@ -44,17 +46,7 @@ class UsersComponent extends React.Component {
     return (
       <>
         {this.props.isFetching ? <Fetching /> : null}
-        <Users
-          totalUsersCount={this.props.totalUsersCount}
-          pageSize={this.props.pageSize}
-          isFetching={this.props.isFetching}
-          users={this.props.users}
-          currentPage={this.props.currentPage}
-          setCurrentPage={this.props.setCurrentPage}
-          onChangePageClick={this.onChangePageClick}
-          unFollowUser={this.props.unFollowUser}
-          followUser={this.props.followUser}
-        />
+        <Users {...this.props} onChangePageClick={this.onChangePageClick} />
       </>
     )
   }
@@ -77,4 +69,4 @@ export default connect(mapStateToProps, {
   setTotalUsersCount,
   setCurrentPage,
   setFetching,
-})(UsersComponent)
+})(UsersContainer)

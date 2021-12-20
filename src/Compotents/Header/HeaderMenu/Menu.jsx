@@ -1,5 +1,5 @@
 import Logo from './Logo'
-import NavIcons from './NavIcons'
+import LoginContainer from './Login/LoginContainer'
 import Navigation from './Navigation'
 import style from './StyleMenu/Menu.module.css'
 
@@ -9,7 +9,7 @@ const Menu = () => {
       <div className={style.menu__container}>
         <Logo />
         <Navigation />
-        <NavIcons />
+        <LoginContainer />
       </div>
     </div>
   )
