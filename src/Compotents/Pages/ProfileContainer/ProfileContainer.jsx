@@ -1,18 +1,17 @@
-import * as axios from 'axios'
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { profileAPI } from '../../../api/api'
 import { setUserInformation } from '../../../Redux/ProfileReducer'
 import Profile from './Profile'
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let userId = this.props.match.params.userId
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-      .then((response) => {
-        this.props.setUserInformation(response.data)
-      })
+    let userId = this.props.match.params.userId // Берем параметр ID с помошью компонента высшего порядка
+    profileAPI.getProfile(userId).then((response) => {
+      //Функция которая делает запрос на сервер
+      this.props.setUserInformation(response.data) // Колбек функция которая диспатчит информацию о конкретном пользователе
+    })
   }
 
   render() {
@@ -26,7 +25,7 @@ let mapStateToProps = (state) => {
   }
 }
 
-let WithRouterProfileContainer = withRouter(ProfileContainer)
+let WithRouterProfileContainer = withRouter(ProfileContainer) //компонент более высокого порядка, который будет передавать ближайшие route match, current locationи historyprops обернутому компоненту при каждом рендеринге
 
 export default connect(mapStateToProps, {
   setUserInformation,

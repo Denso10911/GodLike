@@ -8,37 +8,32 @@ import {
   setUsers,
   unFollowUser,
 } from '../../../Redux/UsersReducer'
-import * as axios from 'axios'
 import Users from './Users'
 import Fetching from '../../../assets/Fetching/Fetching'
+import { usersAPI } from '../../../api/api'
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.setFetching(true)
+    this.props.setFetching(true) //Во время начала запроса отображается крутилка
 
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,
-        { withCredentials: true }
-      )
+    usersAPI
+      .getUsers(this.props.pageSize, this.props.currentPage) //Функция которая делает запрос на сервер
       .then((response) => {
-        this.props.setFetching(false)
-        this.props.setUsers(response.data.items)
-        this.props.setTotalUsersCount(response.data.totalCount)
+        this.props.setFetching(false) //После получения ответа сервера крутилка исчезает
+        this.props.setUsers(response.data.items) // Колбек функция которая диспатчит пользователей страници по дефолту
+        this.props.setTotalUsersCount(response.data.totalCount) // Колбек функция которая диспатчит общую сумму пользователей
       })
   }
 
   onChangePageClick = (n) => {
-    this.props.setFetching(true)
-    this.props.setCurrentPage(n)
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${n}`,
-        { withCredentials: true }
-      )
+    // Функция принимающая в параметре номер страници, делает запрос на сервер и возвращает пользователей этой страници
+    this.props.setFetching(true) //Во время начала запроса отображается крутилка
+    this.props.setCurrentPage(n) //Колбек функция которая диспатчит выбраную страницу
+    usersAPI
+      .getUsers(this.props.pageSize, this.props.currentPage) //Функция которая делает запрос на сервер
       .then((response) => {
-        this.props.setFetching(false)
-        this.props.setUsers(response.data.items)
+        this.props.setFetching(false) //После получения ответа сервера крутилка исчезает
+        this.props.setUsers(response.data.items) // Колбек функция которая диспатчит пользователей выбраной страници
       })
   }
 
