@@ -9,7 +9,6 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
   }
-
   return (
     <div className="users_page">
       <div className="pages">
@@ -38,26 +37,36 @@ const Users = (props) => {
             {u.followed ? (
               <button
                 onClick={() => {
+                  props.doFollowingRequest(true, u.id) // Функция которая блокирует нажатие кнопки пока выполняется запрос на сервер
                   followAPI.deleteFollow(u.id).then((response) => {
                     if (response.data.resultCode === 0) {
                       props.unFollowUser(u.id)
                     }
+                    props.doFollowingRequest(false, u.id) // Функция которая разблокирует нажатие кнопки
                   })
                 }}
                 className="button__unfollow"
+                disabled={props.statusOfFallowingRequest.some(
+                  (id) => id === u.id
+                )}
               >
                 UNFOLLOW
               </button>
             ) : (
               <button
                 onClick={() => {
+                  props.doFollowingRequest(true, u.id) // Функция которая блокирует нажатие кнопки пока выполняется запрос на сервер
                   followAPI.postFollow(u.id).then((response) => {
                     if (response.data.resultCode === 0) {
                       props.followUser(u.id)
                     }
+                    props.doFollowingRequest(false, u.id) // Функция которая разблокирует нажатие кнопки
                   })
                 }}
                 className="button__follow"
+                disabled={props.statusOfFallowingRequest.some(
+                  (id) => id === u.id
+                )}
               >
                 FOLLOW
               </button>

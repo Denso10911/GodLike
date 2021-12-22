@@ -56,3 +56,7 @@ span {
   left: calc(50% - 70px);
   top: 150px;
 }
+
+.user button:disabled {
+  background-color: chartreuse;
+}

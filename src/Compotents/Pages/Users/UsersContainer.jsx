@@ -7,6 +7,7 @@ import {
   setTotalUsersCount,
   setUsers,
   unFollowUser,
+  doFollowingRequest,
 } from '../../../Redux/UsersReducer'
 import Users from './Users'
 import Fetching from '../../../assets/Fetching/Fetching'
@@ -54,6 +55,7 @@ const mapStateToProps = (state) => {
     pageSize: state.usersPage.pageSize,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    statusOfFallowingRequest: state.usersPage.statusOfFallowingRequest,
   }
 }
 
@@ -64,4 +66,5 @@ export default connect(mapStateToProps, {
   setTotalUsersCount,
   setCurrentPage,
   setFetching,
+  doFollowingRequest,
 })(UsersContainer)

@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS'
 const TOTAL_COUNT = 'TOTAL_COUNT'
 const CURRENT_PAGE = 'CURRENT_PAGE'
 const IS_FETCHING = 'IS_FETCHING'
+const DO_FOLLOWING_REQUEST = 'DO_FOLLOWING_REQUEST'
 
 let initialState = {
   users: [],
@@ -11,6 +12,7 @@ let initialState = {
   pageSize: 5,
   currentPage: 1,
   isFetching: false,
+  statusOfFallowingRequest: [],
 }
 const UsersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -54,6 +56,17 @@ const UsersReducer = (state = initialState, action) => {
         ...state,
         isFetching: action.isFetching,
       }
+    case DO_FOLLOWING_REQUEST:
+      return {
+        ...state,
+        statusOfFallowingRequest: action.statusOfFallowingRequest
+          ? [...state.statusOfFallowingRequest, action.userId]
+          : [
+              state.statusOfFallowingRequest.filter(
+                (id) => id !== action.userId
+              ),
+            ],
+      }
     default:
       return state
   }
@@ -62,6 +75,11 @@ const UsersReducer = (state = initialState, action) => {
 export const followUser = (id) => ({ type: FOLLOW, id })
 export const unFollowUser = (id) => ({ type: UNFOLLOW, id })
 export const setUsers = (users) => ({ type: SET_USERS, users })
+export const doFollowingRequest = (statusOfFallowingRequest, userId) => ({
+  type: DO_FOLLOWING_REQUEST,
+  statusOfFallowingRequest,
+  userId,
+})
 export const setCurrentPage = (currentPage) => ({
   type: CURRENT_PAGE,
   currentPage,
