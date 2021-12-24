@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { unFollowThunk, followThunk, getUsersThunk, changePageThunk } from '../../../Redux/UsersReducer'
 import Users from './Users'
 import Fetching from '../../../assets/Fetching/Fetching'
+import { Redirect } from 'react-router-dom'
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -15,6 +16,7 @@ class UsersContainer extends React.Component {
   }
 
   render() {
+    if (!this.props.isAuth) return <Redirect to={'/login'} />
     return (
       <>
         {this.props.isFetching ? <Fetching /> : null}
@@ -32,6 +34,7 @@ const mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
     statusOfFallowingRequest: state.usersPage.statusOfFallowingRequest,
+    isAuth: state.login.isAuth,
   }
 }
 

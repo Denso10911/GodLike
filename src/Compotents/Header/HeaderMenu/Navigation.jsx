@@ -17,7 +17,7 @@ const Navigation = () => {
           <Link to="/elements">Elements</Link>
         </li>
         <li className="nav__item">
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile/1">Profile</Link>
         </li>
         <li className="nav__item">
           <Link to="/forum">Forum</Link>

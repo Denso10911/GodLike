@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import style from './Login.module.css'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Login = (props) => {
   return (
@@ -8,8 +9,10 @@ const Login = (props) => {
       {props.isAuth ? (
         props.login
       ) : (
-        <div className="sign-in-alt">
-          <FontAwesomeIcon icon="sign-in-alt" />
+        <div className={style.signInAlt}>
+          <NavLink to={'/login'}>
+            <FontAwesomeIcon icon="sign-in-alt" />
+          </NavLink>
         </div>
       )}
     </div>

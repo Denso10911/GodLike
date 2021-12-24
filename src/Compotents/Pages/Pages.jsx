@@ -1,10 +1,11 @@
 import { Switch, Route } from 'react-router-dom'
 
 import MainPage from './MainPage/MainPage'
-import Forum from './Forum/Forum'
 import MessagesContainer from './Messages/MessagesContainer'
 import UsersContainer from './Users/UsersContainer'
 import ProfileContainer from './ProfileContainer/ProfileContainer'
+import LoginForm from '../LoginForm/LoginForm'
+import ForumContainer from './Forum/ForumContainer'
 
 const Pages = () => {
   return (
@@ -19,10 +20,13 @@ const Pages = () => {
         <UsersContainer />
       </Route>
       <Route path="/forum">
-        <Forum />
+        <ForumContainer />
       </Route>
       <Route path="/messages">
         <MessagesContainer />
+      </Route>
+      <Route path="/login">
+        <LoginForm />
       </Route>
     </Switch>
   )

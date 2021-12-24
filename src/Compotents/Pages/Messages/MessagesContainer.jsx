@@ -1,13 +1,11 @@
 import { connect } from 'react-redux'
-import {
-  sentNewMessageActionCreator,
-  updateNewTextMessageActionCreator,
-} from '../../../Redux/MessagesReducer'
+import { sentNewMessageActionCreator, updateNewTextMessageActionCreator } from '../../../Redux/MessagesReducer'
 import Messages from './Messages'
 
 const mapStateToProps = (state) => {
   return {
     messages: state.messagesPage,
+    isAuth: state.login.isAuth,
   }
 }
 
@@ -24,6 +22,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
-
-export default MessagesContainer
+export default connect(mapStateToProps, mapDispatchToProps)(Messages)

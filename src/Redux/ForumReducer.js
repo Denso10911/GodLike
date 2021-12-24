@@ -13,6 +13,7 @@ let initialState = {
 const ForumReducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_POST: {
+      debugger
       let post = {
         id: state.posts.length + 1,
         text: state.newPostText,
@@ -35,8 +36,8 @@ const ForumReducer = (state = initialState, action) => {
   }
 }
 
-export const sentNewPostActionCreator = () => ({ type: NEW_POST })
-export const updateNewPostTextActionCreator = (text) => ({
+export const sentNewPost = () => ({ type: NEW_POST })
+export const updateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
 })

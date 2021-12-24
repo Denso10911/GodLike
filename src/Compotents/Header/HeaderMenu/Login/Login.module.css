@@ -7,3 +7,12 @@
 .links div {
   padding: 0 15px;
 }
+
+.signInAlt a {
+  text-decoration: none;
+  color: white;
+}
+
+.signInAlt a:hover {
+  color: rgb(163, 163, 163);
+}

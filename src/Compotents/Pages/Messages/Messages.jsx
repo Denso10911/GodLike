@@ -2,14 +2,13 @@ import './Messages.css'
 import List from './List/List'
 import Dialog from './Dialog/Dialog'
 import React from 'react'
+import { Redirect } from 'react-router'
 
 const Messages = (props) => {
-  let listsElement = props.messages.lists.map((l) => (
-    <List name={l.name} id={l.id} />
-  ))
-  let dialogElement = props.messages.dialogs.map((d) => (
-    <Dialog text={d.text} />
-  ))
+  if (!props.isAuth) return <Redirect to={'/login'} />
+
+  let listsElement = props.messages.lists.map((l) => <List name={l.name} id={l.id} />)
+  let dialogElement = props.messages.dialogs.map((d) => <Dialog text={d.text} />)
 
   let sentAreaMessage = React.createRef()
 
@@ -26,12 +25,7 @@ const Messages = (props) => {
       <div className="dialog__wraper">
         <div className="dialog">{dialogElement}</div>
         <div className="sentArea">
-          <textarea
-            onChange={onMessageTypeChange}
-            ref={sentAreaMessage}
-            value={props.messages.newMessageText}
-            placeholder="Write your message"
-          />
+          <textarea onChange={onMessageTypeChange} ref={sentAreaMessage} value={props.messages.newMessageText} placeholder="Write your message" />
           <button onClick={onMessageSentClick}></button>
         </div>
       </div>

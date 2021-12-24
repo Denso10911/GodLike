@@ -5,29 +5,23 @@ import './ForumPosts.css'
 let sentAreaPostText = React.createRef()
 
 const ForumPosts = (props) => {
-  let forumPostElement = props.forum.posts.map((p) => (
-    <ForumPost text={p.text} likes={p.likes} key={p.id} />
-  ))
+  console.log(props)
+  let forumPostElement = props.posts.map((p) => <ForumPost text={p.text} likes={p.likes} key={p.id} />)
 
   let onPostSentClick = () => {
-    props.sentNewPostAction()
+    props.sentNewPost()
   }
 
   let onPostTextChange = () => {
     let newPostPoint = sentAreaPostText.current.value
-    props.updateNewPostTextAction(newPostPoint)
+    props.updateNewPostText(newPostPoint)
   }
 
   return (
     <div className="forumPosts">
       {forumPostElement}
       <div className="forumPostCreator">
-        <textarea
-          onChange={onPostTextChange}
-          value={props.forum.newPostText}
-          ref={sentAreaPostText}
-          placeholder="Write your post"
-        />
+        <textarea onChange={onPostTextChange} value={props.newPostText} ref={sentAreaPostText} placeholder="Write your post" />
         <button onClick={onPostSentClick}>Sent</button>
       </div>
     </div>

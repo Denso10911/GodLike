@@ -1,15 +1,7 @@
 import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import {
-  faSearch,
-  faShoppingCart,
-  faSignInAlt,
-  faGamepad,
-  faFire,
-  faMedal,
-  faHeart,
-} from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faShoppingCart, faSignInAlt, faGamepad, faFire, faMedal, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css'
 import Header from './Compotents/Header/Header'
@@ -26,15 +18,6 @@ const App = () => {
   )
 }
 
-library.add(
-  fab,
-  faSearch,
-  faShoppingCart,
-  faSignInAlt,
-  faGamepad,
-  faFire,
-  faMedal,
-  faHeart
-)
+library.add(fab, faSearch, faShoppingCart, faSignInAlt, faGamepad, faFire, faMedal, faHeart)
 
 export default App

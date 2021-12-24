@@ -1,16 +1,16 @@
 import GetGodLike from './GetGodLike/GetGodLike'
 import './Forum.css'
-import ForumTopicsContainer from './ForumTopics/ForumTopicsContainer'
-import ForumPostsContainer from './ForumPosts/ForumPostsContainer'
+import ForumPosts from './ForumPosts/ForumPosts'
+import ForumTopics from './ForumTopics/ForumTopics'
 
-const Forum = () => {
+const Forum = (props) => {
   return (
     <div className="forum">
       <GetGodLike />
 
       <div className="forum__content">
-        <ForumTopicsContainer />
-        <ForumPostsContainer />
+        <ForumTopics forumToopicsData={props.forum.forumToopicsData} />
+        <ForumPosts posts={props.forum.posts} newPostText={props.forum.newPostText} sentNewPost={props.sentNewPost} updateNewPostText={props.updateNewPostText} />
       </div>
     </div>
   )
