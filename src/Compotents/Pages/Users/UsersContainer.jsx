@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { unFollowThunk, followThunk, getUsersThunk, changePageThunk } from '../../../Redux/UsersReducer'
 import Users from './Users'
 import Fetching from '../../../assets/Fetching/Fetching'
-import { Redirect } from 'react-router-dom'
+import { compose } from 'redux'
+import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -16,7 +17,6 @@ class UsersContainer extends React.Component {
   }
 
   render() {
-    if (!this.props.isAuth) return <Redirect to={'/login'} />
     return (
       <>
         {this.props.isFetching ? <Fetching /> : null}
@@ -38,9 +38,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  unFollowThunk,
-  followThunk,
-  getUsersThunk,
-  changePageThunk,
-})(UsersContainer)
+export default compose(
+  connect(mapStateToProps, {
+    unFollowThunk,
+    followThunk,
+    getUsersThunk,
+    changePageThunk,
+  }),
+  withAuthRedirecrt
+)(UsersContainer)

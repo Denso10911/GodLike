@@ -1,7 +1,8 @@
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './StyleMenu/Navigation.css'
 
-const Navigation = () => {
+const Navigation = (props) => {
   return (
     <div className="nav">
       <ul className="nav__list">
@@ -17,7 +18,7 @@ const Navigation = () => {
           <Link to="/elements">Elements</Link>
         </li>
         <li className="nav__item">
-          <Link to="/profile/1">Profile</Link>
+          <Link to={'/profile/' + props.myId}>Profile</Link>
         </li>
         <li className="nav__item">
           <Link to="/forum">Forum</Link>
@@ -33,4 +34,10 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+let myStateToProps = (state) => {
+  return {
+    myId: state.login.id,
+  }
+}
+
+export default connect(myStateToProps)(Navigation)

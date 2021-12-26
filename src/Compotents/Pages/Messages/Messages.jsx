@@ -2,11 +2,8 @@ import './Messages.css'
 import List from './List/List'
 import Dialog from './Dialog/Dialog'
 import React from 'react'
-import { Redirect } from 'react-router'
 
 const Messages = (props) => {
-  if (!props.isAuth) return <Redirect to={'/login'} />
-
   let listsElement = props.messages.lists.map((l) => <List name={l.name} id={l.id} />)
   let dialogElement = props.messages.dialogs.map((d) => <Dialog text={d.text} />)
 

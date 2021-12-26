@@ -1,4 +1,6 @@
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
 import { sentNewMessageActionCreator, updateNewTextMessageActionCreator } from '../../../Redux/MessagesReducer'
 import Messages from './Messages'
 
@@ -22,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Messages)
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirecrt)(Messages)
