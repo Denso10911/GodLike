@@ -10,22 +10,22 @@ import ForumContainer from './Forum/ForumContainer'
 const Pages = () => {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path='/'>
         <MainPage />
       </Route>
-      <Route exact path="/profile/:userId">
+      <Route path={'/profile/:userId?'}>
         <ProfileContainer />
       </Route>
-      <Route path="/friends">
+      <Route path='/friends'>
         <UsersContainer />
       </Route>
-      <Route path="/forum">
+      <Route path='/forum'>
         <ForumContainer />
       </Route>
-      <Route path="/messages">
+      <Route path='/messages'>
         <MessagesContainer />
       </Route>
-      <Route path="/login">
+      <Route path='/login'>
         <LoginForm />
       </Route>
     </Switch>

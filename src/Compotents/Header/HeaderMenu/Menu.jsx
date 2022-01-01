@@ -2,6 +2,7 @@ import Logo from './Logo'
 import LoginContainer from './Login/LoginContainer'
 import Navigation from './Navigation'
 import style from './StyleMenu/Menu.module.css'
+import React from 'react'
 
 const Menu = () => {
   return (
