@@ -5,6 +5,7 @@ import MessagesReducer from './MessagesReducer'
 import ProfileReducer from './ProfileReducer'
 import UsersReducer from './UsersReducer'
 import thunkMiddleware from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
 
 let reducers = combineReducers({
   usersPage: UsersReducer,
@@ -12,6 +13,7 @@ let reducers = combineReducers({
   forumPage: ForumReducer,
   profilePage: ProfileReducer,
   login: LoginReducer,
+  form: formReducer,
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware))

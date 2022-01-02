@@ -4,7 +4,7 @@ import MainPage from './MainPage/MainPage'
 import MessagesContainer from './Messages/MessagesContainer'
 import UsersContainer from './Users/UsersContainer'
 import ProfileContainer from './ProfileContainer/ProfileContainer'
-import LoginForm from '../LoginForm/LoginForm'
+import LoginFormContainer from '../LoginForm/LoginFormContainer'
 import ForumContainer from './Forum/ForumContainer'
 
 const Pages = () => {
@@ -26,7 +26,7 @@ const Pages = () => {
         <MessagesContainer />
       </Route>
       <Route path='/login'>
-        <LoginForm />
+        <LoginFormContainer />
       </Route>
     </Switch>
   )

@@ -36,4 +36,21 @@ export const authMeThunk = () => (dispatch) => {
   })
 }
 
+export const authLoginThunk = (value) => () => {
+  authAPI.postAuthLogin(value).then((response) => {
+    if (response.data.resultCode === 0) {
+      debugger
+      authMeThunk()
+    }
+  })
+}
+export const authDeleteLoginThunk = () => () => {
+  authAPI.deleteAuthLogin().then((response) => {
+    if (response.data.resultCode === 0) {
+      debugger
+      authMeThunk()
+    }
+  })
+}
+
 export default LoginReducer

@@ -7,11 +7,14 @@ const Login = (props) => {
   return (
     <div className={style.links}>
       {props.isAuth ? (
-        props.login
+        <div className='login'>
+          {props.login}
+          <span className='delete' onClick={props.authDeleteLoginThunk}>{` X `}</span>
+        </div>
       ) : (
         <div className={style.signInAlt}>
           <NavLink to={'/login'}>
-            <FontAwesomeIcon icon="sign-in-alt" />
+            <FontAwesomeIcon icon='sign-in-alt' />
           </NavLink>
         </div>
       )}

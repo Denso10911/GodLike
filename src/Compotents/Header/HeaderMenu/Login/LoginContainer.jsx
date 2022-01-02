@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Login from './Login'
 import React from 'react'
-import { authMeThunk } from '../../../../Redux/LoginReducer'
+import { authMeThunk, authDeleteLoginThunk } from '../../../../Redux/LoginReducer'
 
 class LoginContainer extends React.Component {
   componentDidMount() {
@@ -20,4 +20,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { authMeThunk })(LoginContainer)
+export default connect(mapStateToProps, { authMeThunk, authDeleteLoginThunk })(LoginContainer)

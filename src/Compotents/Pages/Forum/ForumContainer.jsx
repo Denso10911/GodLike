@@ -1,9 +1,9 @@
-import { sentNewPost, updateNewPostText } from '../../../Redux/ForumReducer'
+import { sentNewPost } from '../../../Redux/ForumReducer'
 import { connect } from 'react-redux'
 import React from 'react'
 import Forum from './Forum'
 import { compose } from 'redux'
-import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
+// import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
 
 class ForumContainer extends React.Component {
   render() {
@@ -18,4 +18,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(connect(mapStateToProps, { sentNewPost, updateNewPostText }), withAuthRedirecrt)(ForumContainer)
+export default compose(connect(mapStateToProps, { sentNewPost }))(ForumContainer)

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
-import { sentNewMessageActionCreator, updateNewTextMessageActionCreator } from '../../../Redux/MessagesReducer'
+import { sentNewMessageActionCreator } from '../../../Redux/MessagesReducer'
 import Messages from './Messages'
 
 const mapStateToProps = (state) => {
@@ -13,12 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateNewTextMessageAction: (text) => {
-      let action = updateNewTextMessageActionCreator(text)
-      dispatch(action)
-    },
-    sentNewMessageAction: () => {
-      let action = sentNewMessageActionCreator()
+    sentNewMessageAction: (message) => {
+      let action = sentNewMessageActionCreator(message)
       dispatch(action)
     },
   }

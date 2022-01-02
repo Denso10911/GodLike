@@ -38,4 +38,12 @@ export const authAPI = {
   getAuth() {
     return instance.get('auth/me')
   },
+
+  postAuthLogin(values) {
+    return instance.post('auth/login', values)
+  },
+
+  deleteAuthLogin() {
+    return instance.delete('auth/login')
+  },
 }
