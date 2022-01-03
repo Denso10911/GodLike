@@ -1,0 +1,17 @@
+.inputError.error input {
+  border: 2px solid red;
+}
+
+.inputError.warning input {
+  border: 2px solid rgb(250, 44, 44);
+}
+
+.inputError.error span {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  color: rgb(250, 44, 44);
+}

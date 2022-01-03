@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { authLoginThunk } from '../../Redux/LoginReducer'
 import { LoginReduxForm } from './LoginForm'
-import './LoginForm.css'
 
 class LoginFormContainer extends React.Component {
   submit = (values) => {
