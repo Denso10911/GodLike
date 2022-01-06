@@ -4,9 +4,9 @@ import React from 'react'
 import { authMeThunk, authDeleteLoginThunk } from '../../../../Redux/LoginReducer'
 
 class LoginContainer extends React.Component {
-  componentDidMount() {
-    this.props.authMeThunk()
-  }
+  // componentDidMount() {
+  //   this.props.authMeThunk()
+  // }
 
   render() {
     return <Login {...this.props} />

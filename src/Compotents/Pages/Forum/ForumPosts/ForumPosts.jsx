@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import renderField from '../../../../assets/RenderField/RenderField'
+import { maxLength, minLength } from '../../../../assets/RenderField/RequiredForm'
 import ForumPost from './ForumPost/ForumPost'
 import './ForumPosts.css'
 
@@ -18,10 +20,13 @@ const ForumPosts = (props) => {
   )
 }
 
+const maxLength50 = maxLength(50)
+const minLength5 = minLength(5)
+
 const addForumPostForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit} className='forumPostCreator'>
-      <Field name='postText' component='textarea' placeholder='Write your post' />
+      <Field name='postText' className='text_area' component={renderField} label='Write your post' validate={[maxLength50, minLength5]} />
       <button>Sent</button>
     </form>
   )

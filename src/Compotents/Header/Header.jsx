@@ -4,7 +4,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className='header'>
       <Top />
       <Menu />
     </div>

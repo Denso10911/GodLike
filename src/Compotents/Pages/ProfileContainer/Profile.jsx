@@ -2,6 +2,7 @@ import Fetching from '../../../assets/Fetching/Fetching'
 import './Profile.css'
 import ProfileContacts from './ProfileContacts/ProfileContacts'
 import ProfileStatus from './ProfileStatus/ProfileStatus'
+import ProfileStatusWithHook from './ProfileStatus/ProfileStatusHook'
 
 const Profile = (props) => {
   if (!props.profile) {
@@ -16,7 +17,7 @@ const Profile = (props) => {
       <div className='profile__information'>
         <div className='profile__name'>{props.profile.fullName}</div>
         <div className='profile__status'>
-          <ProfileStatus status={props.status} updateUserStatusThunk={props.updateUserStatusThunk} />
+          <ProfileStatusWithHook status={props.status} updateUserStatusThunk={props.updateUserStatusThunk} />
         </div>
         <div className='profile__contacts'>
           <ProfileContacts contacts={props.profile.contacts} />

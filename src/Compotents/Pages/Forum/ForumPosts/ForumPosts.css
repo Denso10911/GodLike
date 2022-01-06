@@ -7,4 +7,9 @@
 .forumPostCreator {
   display: flex;
   margin-left: 20px;
+  width: 100%;
+}
+
+.forumPostCreator div {
+  width: 70%;
 }

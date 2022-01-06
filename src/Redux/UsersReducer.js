@@ -91,46 +91,46 @@ export const setFetching = (isFetching) => ({
 
 // Thunks
 
-export const unFollowThunk = (userId) => (dispath) => {
-  dispath(doFollowingRequest(true, userId))
+export const unFollowThunk = (userId) => (dispatch) => {
+  dispatch(doFollowingRequest(true, userId))
   usersAPI.deleteFollow(userId).then((response) => {
     if (response.data.resultCode === 0) {
-      dispath(unFollowUser(userId))
+      dispatch(unFollowUser(userId))
     }
-    dispath(doFollowingRequest(false, userId))
+    dispatch(doFollowingRequest(false, userId))
   })
 }
 
-export const followThunk = (userId) => (dispath) => {
-  dispath(doFollowingRequest(true, userId))
+export const followThunk = (userId) => (dispatch) => {
+  dispatch(doFollowingRequest(true, userId))
   usersAPI.postFollow(userId).then((response) => {
     if (response.data.resultCode === 0) {
-      dispath(followUser(userId))
+      dispatch(followUser(userId))
     }
-    dispath(doFollowingRequest(false, userId))
+    dispatch(doFollowingRequest(false, userId))
   })
 }
 
-export const getUsersThunk = (pageSize, currentPage) => (dispath) => {
-  dispath(setFetching(true)) //Во время начала запроса отображается крутилка
+export const getUsersThunk = (pageSize, currentPage) => (dispatch) => {
+  dispatch(setFetching(true)) //Во время начала запроса отображается крутилка
 
   usersAPI
     .getUsers(pageSize, currentPage) //Функция которая делает запрос на сервер
     .then((response) => {
-      dispath(setFetching(false)) //После получения ответа сервера крутилка исчезает
-      dispath(setUsers(response.data.items)) // Колбек функция которая диспатчит пользователей страници по дефолту
-      dispath(setTotalUsersCount(response.data.totalCount)) // Колбек функция которая диспатчит общую сумму пользователей
+      dispatch(setFetching(false)) //После получения ответа сервера крутилка исчезает
+      dispatch(setUsers(response.data.items)) // Колбек функция которая диспатчит пользователей страници по дефолту
+      dispatch(setTotalUsersCount(response.data.totalCount)) // Колбек функция которая диспатчит общую сумму пользователей
     })
 }
 
-export const changePageThunk = (selectedPage, pageSize) => (dispath) => {
-  dispath(setFetching(true)) //Во время начала запроса отображается крутилка
-  dispath(setCurrentPage(selectedPage, pageSize)) //Колбек функция которая диспатчит выбраную страницу
+export const changePageThunk = (selectedPage, pageSize) => (dispatch) => {
+  dispatch(setFetching(true)) //Во время начала запроса отображается крутилка
+  dispatch(setCurrentPage(selectedPage, pageSize)) //Колбек функция которая диспатчит выбраную страницу
   usersAPI
     .getUsers(pageSize, selectedPage) //Функция которая делает запрос на сервер
     .then((response) => {
-      dispath(setFetching(false)) //После получения ответа сервера крутилка исчезает
-      dispath(setUsers(response.data.items)) // Колбек функция которая диспатчит пользователей выбраной страници
+      dispatch(setFetching(false)) //После получения ответа сервера крутилка исчезает
+      dispatch(setUsers(response.data.items)) // Колбек функция которая диспатчит пользователей выбраной страници
     })
 }
 export default UsersReducer

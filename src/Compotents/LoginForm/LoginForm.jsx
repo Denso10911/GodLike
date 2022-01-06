@@ -20,6 +20,7 @@ const LoginForm = (props) => {
       <div className='loginForm__checkBox'>
         <Field name='RememberMe' component={renderField} type='checkbox' className='checkBox' /> Remember me
       </div>
+      {props.error ? <div className='formError'>{props.error}</div> : ''}
       <div className='loginForm__button'>
         <button>Send</button>
       </div>

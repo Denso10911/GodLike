@@ -34,3 +34,13 @@
 .checkBox {
   margin: 0 10px;
 }
+
+.formError {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  color: rgb(250, 44, 44);
+}

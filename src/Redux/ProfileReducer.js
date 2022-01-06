@@ -2,9 +2,11 @@ import { profileAPI } from '../api/api'
 
 const SET_USER_INFORMATION = 'SET_USER_INFORMATION'
 const SET_USER_STATUS = 'SET_USER_STATUS'
+const IS_FETCHING = 'IS_FETCHING'
 
 let initialState = {
   profile: null,
+  isFetching: false,
   status: '',
 }
 
@@ -20,11 +22,21 @@ const ProfileReducer = (state = initialState, action) => {
         ...state,
         status: action.status,
       }
+    case IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching,
+      }
 
     default:
       return state
   }
 }
+
+export const setFetching = (isFetching) => ({
+  type: IS_FETCHING,
+  isFetching,
+})
 
 export const setUserInformation = (profile) => ({
   type: SET_USER_INFORMATION,
@@ -37,9 +49,11 @@ export const setUserStatus = (status) => ({
 })
 
 export const getProfileThunk = (userId) => (dispatch) => {
+  dispatch(setFetching(true))
   profileAPI.getProfile(userId).then((response) => {
     //Функция которая делает запрос на сервер
     dispatch(setUserInformation(response.data)) // Колбек функция которая диспатчит информацию о конкретном пользователе
+    dispatch(setFetching(false))
   })
 }
 export const getUserStatusThunk = (userId) => (dispatch) => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import React from 'react'
 import Forum from './Forum'
 import { compose } from 'redux'
+import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
 // import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
 
 class ForumContainer extends React.Component {
@@ -18,4 +19,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(connect(mapStateToProps, { sentNewPost }))(ForumContainer)
+export default compose(connect(mapStateToProps, { sentNewPost }), withAuthRedirecrt)(ForumContainer)

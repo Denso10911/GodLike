@@ -5,6 +5,7 @@ import Users from './Users'
 import Fetching from '../../../assets/Fetching/Fetching'
 import { compose } from 'redux'
 import { withAuthRedirecrt } from '../../../hoc/AuthHoc'
+import { getCurrentPage, getIsAuth, getIsFetching, getPageSize, getStatusOfFallowingRequest, getTotalUsersCount, getUsers } from '../../../Redux/UsersSelectors'
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -17,24 +18,19 @@ class UsersContainer extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        {this.props.isFetching ? <Fetching /> : null}
-        <Users {...this.props} onChangePageClick={this.onChangePageClick} />
-      </>
-    )
+    return <>{this.props.isFetching ? <Fetching /> : <Users {...this.props} onChangePageClick={this.onChangePageClick} />}</>
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    pageSize: state.usersPage.pageSize,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    statusOfFallowingRequest: state.usersPage.statusOfFallowingRequest,
-    isAuth: state.login.isAuth,
+    users: getUsers(state),
+    totalUsersCount: getTotalUsersCount(state),
+    pageSize: getPageSize(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    statusOfFallowingRequest: getStatusOfFallowingRequest(state),
+    isAuth: getIsAuth(state),
   }
 }
 
