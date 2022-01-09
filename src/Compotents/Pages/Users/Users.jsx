@@ -1,59 +1,33 @@
-import React from 'react'
-import User from './User/User'
-import './Users.css'
+import React from "react";
+import FollowButtons from "./FollowButtons/FollowButtons";
+import User from "./User/User";
+import "./Users.css";
+import UsersPages from "./UsersPages/UsersPages";
 
 const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-  let pages = []
-  for (let i = 3200; i <= pagesCount; i++) {
-    pages.push(i)
-  }
   return (
-    <div className="users_page">
-      <div className="pages">
-        {pages.map((n) => {
-          return (
-            <span
-              className={props.currentPage === n ? 'select' : 'noSelect'}
-              onClick={() => {
-                props.onChangePageClick(n)
-              }}
-              key={n}
-            >
-              {` ${n} `}
-            </span>
-          )
-        })}
-      </div>
-      <div className="users" style={props.isFetching ? { opacity: 0 } : { opacity: 1 }}>
+    <div className='users_page'>
+      <UsersPages
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+        currentPage={props.currentPage}
+        onChangePageClick={props.onChangePageClick}
+      />
+
+      <div className='users'>
         {props.users.map((u) => (
-          <div className="user" key={u.id}>
+          <div className='user' key={u.id}>
             <User userInfo={u} />
-            {u.followed ? (
-              <button
-                onClick={() => {
-                  props.unFollowThunk(u.id)
-                }}
-                className="button__unfollow"
-                disabled={props.statusOfFallowingRequest.some((id) => id === u.id)}
-              >
-                UNFOLLOW
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  props.followThunk(u.id)
-                }}
-                className="button__follow"
-                disabled={props.statusOfFallowingRequest.some((id) => id === u.id)}
-              >
-                FOLLOW
-              </button>
-            )}
+            <FollowButtons
+              userInfo={u}
+              unFollowThunk={props.unFollowThunk}
+              followThunk={props.followThunk}
+              statusOfFallowingRequest={props.statusOfFallowingRequest}
+            />
           </div>
         ))}
       </div>
     </div>
-  )
-}
-export default Users
+  );
+};
+export default Users;

@@ -1,0 +1,41 @@
+.pages__break {
+  letter-spacing: 5px;
+  transition: all 0.5s ease;
+}
+
+.pages__list {
+  display: flex;
+  list-style-type: none;
+  width: 40%;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px 0 calc(20px - 1.25524vw);
+  cursor: pointer;
+}
+
+.pages__item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 3px;
+}
+
+.pages__link {
+  width: 100%;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.next,
+.previous {
+  display: flex;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+
+.pages__link:hover,
+.next:hover,
+.previous:hover,
+.pages__break:hover {
+  color: #9c6161;
+}
