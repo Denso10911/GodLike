@@ -5,7 +5,7 @@ function ProfileStatusWithHook(props) {
   let [status, setStatus] = useState(props.status);
 
   let activateEditMod = () => {
-    if (props.userId == props.myId) {
+    if (props.userId === props.myId) {
       setEditMode(true);
     }
   };

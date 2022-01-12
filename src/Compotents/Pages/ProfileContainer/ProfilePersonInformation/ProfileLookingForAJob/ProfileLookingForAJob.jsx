@@ -1,6 +1,6 @@
 import React from "react";
 
-export default (props) => {
+const ProfileLookingForAJob = (props) => {
   return (
     <div className='profile__lookingForAJob'>
       <div className='profile__lookingForAJob_boolean'>
@@ -14,3 +14,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default ProfileLookingForAJob;

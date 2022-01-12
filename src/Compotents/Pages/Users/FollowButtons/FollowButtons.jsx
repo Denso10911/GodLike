@@ -1,7 +1,7 @@
 import React from "react";
 import FollowButton from "./FollowButton/FollowButton";
 
-export default (props) => {
+const FollowButtons = (props) => {
   const forButtonProps = {
     id: props.userInfo.id,
     statusOfFallowingRequest: props.statusOfFallowingRequest,
@@ -26,3 +26,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default FollowButtons;

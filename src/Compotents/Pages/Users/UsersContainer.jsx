@@ -35,9 +35,8 @@ class UsersContainer extends React.Component {
   render() {
     return (
       <>
-        {this.props.isFetching ? (
-          <Fetching />
-        ) : (
+        {this.props.isFetching && <Fetching />}
+        {!this.props.isFetching && (
           <Users {...this.props} onChangePageClick={this.onChangePageClick} />
         )}
       </>

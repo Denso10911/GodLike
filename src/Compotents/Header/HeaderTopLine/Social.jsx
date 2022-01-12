@@ -1,16 +1,19 @@
-import './StyleTopLine/Social.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import SocialIcons from './SocialIcons/SocialIcons'
+import "./StyleTopLine/Social.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SocialIcons from "./SocialIcons/SocialIcons";
 
 const Social = () => {
-  return (
-    <div className="links">
-      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'twitter']} />} />
-      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'dribbble']} />} />
-      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'instagram']} />} />
-      <SocialIcons icon={<FontAwesomeIcon icon={['fab', 'pinterest']} />} />
-    </div>
-  )
-}
+  const iconsTegs = [
+    ["fab", "twitter"],
+    ["fab", "dribbble"],
+    ["fab", "instagram"],
+    ["fab", "pinterest"],
+  ];
+  const icons = iconsTegs.map((i) => {
+    return <SocialIcons icon={<FontAwesomeIcon icon={i} />} key={i} />;
+  });
 
-export default Social
+  return <div className='links'>{icons}</div>;
+};
+
+export default Social;

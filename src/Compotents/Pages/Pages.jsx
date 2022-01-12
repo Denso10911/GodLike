@@ -1,11 +1,11 @@
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from "react-router-dom";
 
-import MainPage from './MainPage/MainPage'
-import MessagesContainer from './Messages/MessagesContainer'
-import UsersContainer from './Users/UsersContainer'
-import ProfileContainer from './ProfileContainer/ProfileContainer'
-import LoginFormContainer from '../LoginForm/LoginFormContainer'
-import ForumContainer from './Forum/ForumContainer'
+import MainPage from "./MainPage/MainPage";
+import MessagesContainer from "./Messages/MessagesContainer";
+import UsersContainer from "./Users/UsersContainer";
+import ProfileContainer from "./ProfileContainer/ProfileContainer";
+import LoginFormContainer from "../LoginForm/LoginFormContainer";
+import ForumContainer from "./Forum/ForumContainer";
 
 const Pages = () => {
   return (
@@ -13,7 +13,7 @@ const Pages = () => {
       <Route exact path='/'>
         <MainPage />
       </Route>
-      <Route path={'/profile/:userId?'}>
+      <Route path={"/profile/:userId?"}>
         <ProfileContainer />
       </Route>
       <Route path='/friends'>
@@ -29,7 +29,7 @@ const Pages = () => {
         <LoginFormContainer />
       </Route>
     </Switch>
-  )
-}
+  );
+};
 
-export default Pages
+export default Pages;

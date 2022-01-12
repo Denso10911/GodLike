@@ -1,6 +1,6 @@
 import React from "react";
 
-export default (props) => {
+const FollowButton = (props) => {
   return (
     <button
       onClick={() => {
@@ -13,3 +13,5 @@ export default (props) => {
     </button>
   );
 };
+
+export default FollowButton;

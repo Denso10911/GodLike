@@ -1,10 +1,10 @@
-import { authMeThunk } from './LoginReducer'
+import { authMeThunk } from "./LoginReducer";
 
-const SET_INITIALLIZING = 'SET_INITIALLIZING'
+const SET_INITIALLIZING = "SET_INITIALLIZING";
 
 let initialState = {
   initiallizing: false,
-}
+};
 
 const AppReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,20 +12,19 @@ const AppReducer = (state = initialState, action) => {
       return {
         ...state,
         initiallizing: true,
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const setInitiallizing = () => ({ type: SET_INITIALLIZING })
+export const setInitiallizing = () => ({ type: SET_INITIALLIZING });
 
 export const initiallizingAppThunk = () => (dispatch) => {
-  let promise = dispatch(authMeThunk())
-  console.log(promise)
+  let promise = dispatch(authMeThunk());
   Promise.all([promise]).then(() => {
-    dispatch(setInitiallizing())
-  })
-}
-export default AppReducer
+    dispatch(setInitiallizing());
+  });
+};
+export default AppReducer;

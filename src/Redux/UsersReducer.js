@@ -125,19 +125,21 @@ export const getUsersThunk = (pageSize, currentPage) => (dispatch) => {
   usersAPI
     .getUsers(pageSize, getCurrentPage) //Функция которая делает запрос на сервер
     .then((response) => {
-      dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
       dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей страници по дефолту
       dispatch(setTotalUsersCount(response.data.totalCount)); // Колбек функция которая диспатчит общую сумму пользователей
+      dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
     });
 };
 
 export const changePageThunk = (currentPage, pageSize) => (dispatch) => {
   const getCurrentPage = currentPage + 1;
+  dispatch(setFetching(true)); //Во время начала запроса отображается крутилка
   dispatch(setCurrentPage(currentPage)); //Колбек функция которая диспатчит выбраную страницу
   usersAPI
     .getUsers(pageSize, getCurrentPage) //Функция которая делает запрос на сервер
     .then((response) => {
       dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей выбраной страници
+      dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
     });
 };
 export default UsersReducer;

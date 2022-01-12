@@ -23,3 +23,8 @@
   font-size: 2em;
   margin-bottom: 20px;
 }
+
+.profilePosts {
+  width: 80%;
+  margin: 0 auto;
+}

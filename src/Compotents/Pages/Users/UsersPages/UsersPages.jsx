@@ -2,7 +2,7 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import "./UsersPages.css";
 
-export default (props) => {
+const UsersPages = (props) => {
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
   return (
@@ -26,3 +26,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default UsersPages;

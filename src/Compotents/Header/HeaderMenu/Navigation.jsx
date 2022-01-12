@@ -1,14 +1,12 @@
-import { Link } from 'react-router-dom'
-import './StyleMenu/Navigation.css'
+import { Link } from "react-router-dom";
+import "./StyleMenu/Navigation.css";
 
 const Navigation = () => {
   return (
     <div className='nav'>
       <ul className='nav__list'>
         <li className='nav__item'>
-          <Link to='/' className='nav__link'>
-            Hasdome
-          </Link>
+          <Link to='/'>Hasdome</Link>
         </li>
         <li className='nav__item'>
           <Link to='/features'>Features</Link>
@@ -17,7 +15,7 @@ const Navigation = () => {
           <Link to='/elements'>Elements</Link>
         </li>
         <li className='nav__item'>
-          <Link to={'/profile'}>Profile</Link>
+          <Link to={"/profile"}>Profile</Link>
         </li>
         <li className='nav__item'>
           <Link to='/forum'>Forum</Link>
@@ -30,7 +28,7 @@ const Navigation = () => {
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;

@@ -8,6 +8,8 @@ import {
   getProfileThunk,
   getUserStatusThunk,
   updateUserStatusThunk,
+  setMyNewPost,
+  deleteMyPost,
 } from "../../../Redux/ProfileReducer";
 import Profile from "./Profile";
 
@@ -31,14 +33,16 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <>
-        {this.props.isFetching ? (
-          <Fetching />
-        ) : (
+        {this.props.isFetching && <Fetching />}
+        {!this.props.isFetching && (
           <Profile
             profile={this.props.profile}
             status={this.props.status}
             updateUserStatusThunk={this.props.updateUserStatusThunk}
             myId={this.props.myId}
+            posts={this.props.posts}
+            setMyNewPost={this.props.setMyNewPost}
+            deleteMyPost={this.props.deleteMyPost}
           />
         )}
       </>
@@ -51,6 +55,7 @@ let mapStateToProps = (state) => {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     isFetching: state.profilePage.isFetching,
+    posts: state.profilePage.posts,
     myId: state.login.id,
   };
 };
@@ -60,6 +65,8 @@ export default compose(
     getProfileThunk,
     getUserStatusThunk,
     updateUserStatusThunk,
+    setMyNewPost,
+    deleteMyPost,
   }),
   withRouter,
   withAuthRedirecrt
