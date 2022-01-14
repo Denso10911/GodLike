@@ -1,33 +1,28 @@
+import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-
 import MainPage from "./MainPage/MainPage";
-import MessagesContainer from "./Messages/MessagesContainer";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./ProfileContainer/ProfileContainer";
-import LoginFormContainer from "../LoginForm/LoginFormContainer";
-import ForumContainer from "./Forum/ForumContainer";
+import Fetching from "../../assets/Fetching/Fetching";
+const LoginFormContainer = React.lazy(() =>
+  import("../LoginForm/LoginFormContainer")
+);
+const ForumContainer = React.lazy(() => import("./Forum/ForumContainer"));
+const MessagesContainer = React.lazy(() =>
+  import("./Messages/MessagesContainer")
+);
 
 const Pages = () => {
   return (
     <Switch>
-      <Route exact path='/'>
-        <MainPage />
-      </Route>
-      <Route path={"/profile/:userId?"}>
-        <ProfileContainer />
-      </Route>
-      <Route path='/friends'>
-        <UsersContainer />
-      </Route>
-      <Route path='/forum'>
-        <ForumContainer />
-      </Route>
-      <Route path='/messages'>
-        <MessagesContainer />
-      </Route>
-      <Route path='/login'>
-        <LoginFormContainer />
-      </Route>
+      <Route exact path='/' component={MainPage} />
+      <Route path={"/profile/:userId?"} component={ProfileContainer} />
+      <Route path='/friends' component={UsersContainer} />
+      <Suspense fallback={<Fetching />}>
+        <Route path='/forum' component={ForumContainer} />
+        <Route path='/messages' component={MessagesContainer} />
+        <Route path='/login' component={LoginFormContainer} />
+      </Suspense>
     </Switch>
   );
 };
