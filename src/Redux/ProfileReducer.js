@@ -5,6 +5,7 @@ const SET_USER_STATUS = "SET_USER_STATUS";
 const IS_FETCHING = "IS_FETCHING";
 const SET_MY_NEW_POST = "SET_MY_NEW_POST";
 const DELETE_MY_POST = "DELETE_MY_POST";
+const CHANGE_MY_PHOTO = "CHANGE_MY_PHOTO";
 
 let initialState = {
   profile: null,
@@ -50,16 +51,23 @@ const ProfileReducer = (state = initialState, action) => {
         posts: state.posts.filter((item) => item.id !== action.postId),
       };
 
+    case CHANGE_MY_PHOTO:
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.img },
+      };
+
     default:
       return state;
   }
 };
 
+//AC
+
 export const setFetching = (isFetching) => ({
   type: IS_FETCHING,
   isFetching,
 });
-
 export const setUserInformation = (profile) => ({
   type: SET_USER_INFORMATION,
   profile,
@@ -69,7 +77,6 @@ export const setUserStatus = (status) => ({
   type: SET_USER_STATUS,
   status,
 });
-
 export const setMyNewPost = (text) => ({
   type: SET_MY_NEW_POST,
   text,
@@ -78,6 +85,14 @@ export const deleteMyPost = (postId) => ({
   type: DELETE_MY_POST,
   postId,
 });
+export const changeMyPhoto = (img) => {
+  return {
+    type: CHANGE_MY_PHOTO,
+    img,
+  };
+};
+
+//thunks
 
 export const getProfileThunk = (userId) => (dispatch) => {
   dispatch(setFetching(true));
@@ -101,4 +116,12 @@ export const updateUserStatusThunk = (status) => (dispatch) => {
     }
   });
 };
+export const changeMyPhotoThunk = (img) => (dispatch) => {
+  profileAPI.changeMyPhoto(img).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(changeMyPhoto(response.data.data.photos));
+    }
+  });
+};
+
 export default ProfileReducer;

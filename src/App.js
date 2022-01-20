@@ -1,26 +1,34 @@
-import React from 'react'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faSearch, faShoppingCart, faSignInAlt, faGamepad, faFire, faMedal, faHeart } from '@fortawesome/free-solid-svg-icons'
-
-import './App.css'
-import Header from './Compotents/Header/Header'
-import Border from './Compotents/PageBorder/Border'
-import Pages from './Compotents/Pages/Pages'
-import { initiallizingAppThunk } from './Redux/AppReducer'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
-import { withRouter } from 'react-router'
-import Fetching from './assets/Fetching/Fetching'
+import React from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faSearch,
+  faShoppingCart,
+  faSignInAlt,
+  faGamepad,
+  faFire,
+  faMedal,
+  faHeart,
+  faCamera,
+} from "@fortawesome/free-solid-svg-icons";
+import "./App.css";
+import Header from "./Compotents/Header/Header";
+import Border from "./Compotents/PageBorder/Border";
+import Pages from "./Compotents/Pages/Pages";
+import { initiallizingAppThunk } from "./Redux/AppReducer";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { withRouter } from "react-router";
+import Fetching from "./assets/Fetching/Fetching";
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.initiallizingAppThunk()
+    this.props.initiallizingAppThunk();
   }
 
   render() {
     if (!this.props.initiallizing) {
-      return <Fetching />
+      return <Fetching />;
     }
     return (
       <div className='body'>
@@ -28,14 +36,27 @@ class App extends React.Component {
         <Border />
         <Pages />
       </div>
-    )
+    );
   }
 }
 
-library.add(fab, faSearch, faShoppingCart, faSignInAlt, faGamepad, faFire, faMedal, faHeart)
+library.add(
+  fab,
+  faSearch,
+  faShoppingCart,
+  faSignInAlt,
+  faGamepad,
+  faFire,
+  faMedal,
+  faHeart,
+  faCamera
+);
 
 let mapStateToProps = (state) => ({
   initiallizing: state.app.initiallizing,
-})
+});
 
-export default compose(withRouter, connect(mapStateToProps, { initiallizingAppThunk }))(App)
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initiallizingAppThunk })
+)(App);

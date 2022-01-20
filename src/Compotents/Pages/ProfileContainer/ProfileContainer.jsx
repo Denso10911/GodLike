@@ -10,6 +10,7 @@ import {
   updateUserStatusThunk,
   setMyNewPost,
   deleteMyPost,
+  changeMyPhotoThunk,
 } from "../../../Redux/ProfileReducer";
 import Profile from "./Profile";
 
@@ -43,6 +44,7 @@ class ProfileContainer extends React.Component {
             posts={this.props.posts}
             setMyNewPost={this.props.setMyNewPost}
             deleteMyPost={this.props.deleteMyPost}
+            changeMyPhotoThunk={this.props.changeMyPhotoThunk}
           />
         )}
       </>
@@ -67,6 +69,7 @@ export default compose(
     updateUserStatusThunk,
     setMyNewPost,
     deleteMyPost,
+    changeMyPhotoThunk,
   }),
   withRouter,
   withAuthRedirecrt

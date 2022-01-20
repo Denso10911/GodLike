@@ -1,20 +1,18 @@
 import React from "react";
 import ProfileContacts from "./ProfileContacts/ProfileContacts";
 import ProfileLookingForAJob from "./ProfileLookingForAJob/ProfileLookingForAJob";
+import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
 import ProfileStatusWithHook from "./ProfileStatus/ProfileStatusHook";
-import usersPhoto from "../../Users/UsersImg/users.jpg";
 
 const ProfilePersonInformation = (props) => {
   return (
     <>
       <div className='profile__photo'>
-        <img
-          src={
-            props.profile.photos.large != null
-              ? props.profile.photos.large
-              : usersPhoto
-          }
-          alt='#'
+        <ProfilePhoto
+          photos={props.profile.photos}
+          myId={props.myId}
+          userId={props.profile.userId}
+          changeMyPhotoThunk={props.changeMyPhotoThunk}
         />
       </div>
       <div className='profile__information'>

@@ -16,6 +16,7 @@ const Profile = (props) => {
           status={props.status}
           myId={props.myId}
           updateUserStatusThunk={props.updateUserStatusThunk}
+          changeMyPhotoThunk={props.changeMyPhotoThunk}
         />
       </div>
       <div className='profilePosts'>
