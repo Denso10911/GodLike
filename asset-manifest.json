@@ -1,0 +1,37 @@
+{
+  "files": {
+    "static/js/0.89a04add.chunk.js": "/GodLike/static/js/0.89a04add.chunk.js",
+    "static/js/0.89a04add.chunk.js.map": "/GodLike/static/js/0.89a04add.chunk.js.map",
+    "main.css": "/GodLike/static/css/main.11dc9109.chunk.css",
+    "main.js": "/GodLike/static/js/main.b3020a27.chunk.js",
+    "main.js.map": "/GodLike/static/js/main.b3020a27.chunk.js.map",
+    "runtime-main.js": "/GodLike/static/js/runtime-main.5a17d8b5.js",
+    "runtime-main.js.map": "/GodLike/static/js/runtime-main.5a17d8b5.js.map",
+    "static/js/3.fb3e6932.chunk.js": "/GodLike/static/js/3.fb3e6932.chunk.js",
+    "static/js/3.fb3e6932.chunk.js.map": "/GodLike/static/js/3.fb3e6932.chunk.js.map",
+    "static/css/4.cef366c5.chunk.css": "/GodLike/static/css/4.cef366c5.chunk.css",
+    "static/js/4.a3106539.chunk.js": "/GodLike/static/js/4.a3106539.chunk.js",
+    "static/js/4.a3106539.chunk.js.map": "/GodLike/static/js/4.a3106539.chunk.js.map",
+    "static/css/5.50ff0546.chunk.css": "/GodLike/static/css/5.50ff0546.chunk.css",
+    "static/js/5.35e08c47.chunk.js": "/GodLike/static/js/5.35e08c47.chunk.js",
+    "static/js/5.35e08c47.chunk.js.map": "/GodLike/static/js/5.35e08c47.chunk.js.map",
+    "static/css/6.ceee5001.chunk.css": "/GodLike/static/css/6.ceee5001.chunk.css",
+    "static/js/6.7ca3e14f.chunk.js": "/GodLike/static/js/6.7ca3e14f.chunk.js",
+    "static/js/6.7ca3e14f.chunk.js.map": "/GodLike/static/js/6.7ca3e14f.chunk.js.map",
+    "index.html": "/GodLike/index.html",
+    "static/css/4.cef366c5.chunk.css.map": "/GodLike/static/css/4.cef366c5.chunk.css.map",
+    "static/css/5.50ff0546.chunk.css.map": "/GodLike/static/css/5.50ff0546.chunk.css.map",
+    "static/css/6.ceee5001.chunk.css.map": "/GodLike/static/css/6.ceee5001.chunk.css.map",
+    "static/css/main.11dc9109.chunk.css.map": "/GodLike/static/css/main.11dc9109.chunk.css.map",
+    "static/js/0.89a04add.chunk.js.LICENSE.txt": "/GodLike/static/js/0.89a04add.chunk.js.LICENSE.txt",
+    "static/js/3.fb3e6932.chunk.js.LICENSE.txt": "/GodLike/static/js/3.fb3e6932.chunk.js.LICENSE.txt",
+    "static/media/Preloader.0cfc3d00.svg": "/GodLike/static/media/Preloader.0cfc3d00.svg",
+    "static/media/GetGodLike.module.css": "/GodLike/static/media/raid-header.3431d4a0.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a17d8b5.js",
+    "static/js/3.fb3e6932.chunk.js",
+    "static/css/main.11dc9109.chunk.css",
+    "static/js/main.b3020a27.chunk.js"
+  ]
+}
