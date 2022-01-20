@@ -40,7 +40,7 @@
   margin-bottom: 25px;
 }
 
-textarea {
+.text_area {
   color: white;
   background-color: rgb(54, 54, 54);
   border-radius: 5px;
@@ -49,7 +49,7 @@ textarea {
   border: none;
   height: 40px;
   font-size: 1.2rem;
-  width: 70%;
+  width: 80%;
   margin-right: 10px;
   padding: 0;
 }

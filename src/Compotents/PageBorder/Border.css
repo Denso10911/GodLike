@@ -1,3 +1,7 @@
+.pageBorder {
+  position: absolute;
+}
+
 .pageBorder .pageBorder_r,
 .pageBorder .pageBorder_l,
 .pageBorder .pageBorder_t,
@@ -16,12 +20,14 @@
   background-image: url(https://wp.nkdev.info/godlike/wp-content/themes/godlike/assets/images/border-right.png);
   width: 100px;
   right: 0;
+  top: 0;
   height: 100%;
 }
 .pageBorder_l {
   background-image: url(https://wp.nkdev.info/godlike/wp-content/themes/godlike/assets/images/border-left.png);
   width: 100px;
   left: 0;
+  top: 0;
   height: 100%;
 }
 

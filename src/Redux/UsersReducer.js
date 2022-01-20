@@ -1,91 +1,145 @@
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET_USERS'
+import { usersAPI } from "../api/api";
+
+const FOLLOW = "FOLLOW";
+const UNFOLLOW = "UNFOLLOW";
+const SET_USERS = "SET_USERS";
+const TOTAL_COUNT = "TOTAL_COUNT";
+const CURRENT_PAGE = "CURRENT_PAGE";
+const IS_FETCHING = "IS_FETCHING";
+const DO_FOLLOWING_REQUEST = "DO_FOLLOWING_REQUEST";
 
 let initialState = {
-  users: [
-    {
-      userId: 1,
-      myFriend: true,
-      firstName: 'Denis',
-      secondName: 'Gerasymov',
-      country: 'Ukraine',
-      sity: 'Kyiv',
-      credo: 'Lorem ipsum dolor sit amet.',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrOdW6rrJSCxzu6TbqU7shTs3BUvXZKpcBQA&usqp=CAU',
-    },
-    {
-      userId: 2,
-      myFriend: false,
-      firstName: 'Nina',
-      secondName: 'Gerasymova',
-      country: 'Ukraine',
-      sity: 'Kyiv',
-      credo: 'Lorem ipsum dolor sit amet and bite some zdobuch',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6IEmBVP3jAWho0A5yvd-a4gQ-WpVjpwydg&usqp=CAU',
-    },
-    {
-      userId: 3,
-      myFriend: false,
-      firstName: 'Marina',
-      secondName: 'Gerasymova',
-      country: 'Poland',
-      sity: 'Poznan',
-      credo: 'Lorem ipsum dolor sit amet.',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSc6naks-1uvS59bavB1gi1clShtsGB6AoLyw&usqp=CAU',
-    },
-    {
-      userId: 4,
-      myFriend: false,
-      firstName: 'Alex',
-      secondName: 'Griva',
-      country: 'German',
-      sity: 'Berlin',
-      credo: 'Lorem ipsum dolor sit ',
-      avatar:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxZSFMnXkZDGsGwJbcnQEqW4_uzDZZvT6DRw&usqp=CAU',
-    },
-  ],
-}
-
+  users: [],
+  totalUsersCount: 20,
+  pageSize: 5,
+  currentPage: 0,
+  isFetching: false,
+  statusOfFallowingRequest: [],
+};
 const UsersReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW:
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.userId === action.userId) {
-            return { ...u, myFriend: true }
+          if (u.id === action.id) {
+            return { ...u, followed: true };
           }
-          return u
+          return u;
         }),
-      }
+      };
     case UNFOLLOW:
       return {
         ...state,
         users: state.users.map((u) => {
-          if (u.userId === action.userId) {
-            return { ...u, myFriend: false }
+          if (u.id === action.id) {
+            return { ...u, followed: false };
           }
-          return u
+          return u;
         }),
-      }
+      };
     case SET_USERS:
       return {
         ...state,
-        users: [...state.users, ...action.users],
-      }
-
+        users: [...action.users],
+      };
+    case TOTAL_COUNT:
+      return {
+        ...state,
+        totalUsersCount: action.totalUsersCount,
+      };
+    case CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.currentPage,
+      };
+    case IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching,
+      };
+    case DO_FOLLOWING_REQUEST:
+      return {
+        ...state,
+        statusOfFallowingRequest: action.statusOfFallowingRequest
+          ? [...state.statusOfFallowingRequest, action.userId]
+          : [
+              state.statusOfFallowingRequest.filter(
+                (id) => id !== action.userId
+              ),
+            ],
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const followUserAC = (userId) => ({ type: FOLLOW, userId })
-export const unFollowUserAC = (userId) => ({ type: UNFOLLOW, userId })
-export const setUsersAC = (users) => ({ type: SET_USERS, users })
+export const followUser = (id) => ({ type: FOLLOW, id });
+export const unFollowUser = (id) => ({ type: UNFOLLOW, id });
+export const setUsers = (users) => ({ type: SET_USERS, users });
+export const doFollowingRequest = (statusOfFallowingRequest, userId) => ({
+  type: DO_FOLLOWING_REQUEST,
+  statusOfFallowingRequest,
+  userId,
+});
+const setCurrentPage = (currentPage) => {
+  return {
+    type: CURRENT_PAGE,
+    currentPage,
+  };
+};
+export const setTotalUsersCount = (totalUsersCount) => ({
+  type: TOTAL_COUNT,
+  totalUsersCount,
+});
+export const setFetching = (isFetching) => ({
+  type: IS_FETCHING,
+  isFetching,
+});
 
-export default UsersReducer
+// Thunks
+
+export const unFollowThunk = (userId) => (dispatch) => {
+  dispatch(doFollowingRequest(true, userId));
+  usersAPI.deleteFollow(userId).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(unFollowUser(userId));
+    }
+    dispatch(doFollowingRequest(false, userId));
+  });
+};
+
+export const followThunk = (userId) => (dispatch) => {
+  dispatch(doFollowingRequest(true, userId));
+  usersAPI.postFollow(userId).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(followUser(userId));
+    }
+    dispatch(doFollowingRequest(false, userId));
+  });
+};
+
+export const getUsersThunk = (pageSize, currentPage) => (dispatch) => {
+  dispatch(setFetching(true)); //Во время начала запроса отображается крутилка
+  const getCurrentPage = currentPage + 1;
+  usersAPI
+    .getUsers(pageSize, getCurrentPage) //Функция которая делает запрос на сервер
+    .then((response) => {
+      dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей страници по дефолту
+      dispatch(setTotalUsersCount(response.data.totalCount)); // Колбек функция которая диспатчит общую сумму пользователей
+      dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
+    });
+};
+
+export const changePageThunk = (currentPage, pageSize) => (dispatch) => {
+  const getCurrentPage = currentPage + 1;
+  dispatch(setFetching(true)); //Во время начала запроса отображается крутилка
+  dispatch(setCurrentPage(currentPage)); //Колбек функция которая диспатчит выбраную страницу
+  usersAPI
+    .getUsers(pageSize, getCurrentPage) //Функция которая делает запрос на сервер
+    .then((response) => {
+      dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей выбраной страници
+      dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
+    });
+};
+export default UsersReducer;

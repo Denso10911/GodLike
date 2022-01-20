@@ -1,0 +1,19 @@
+.links {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.links div {
+  padding: 0 15px;
+}
+
+.signInAlt a {
+  text-decoration: none;
+  color: white;
+  transition: all 0.5s ease;
+}
+
+.signInAlt a:hover {
+  color: rgb(163, 163, 163);
+}
