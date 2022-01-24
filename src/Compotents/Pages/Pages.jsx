@@ -11,6 +11,9 @@ const ForumContainer = React.lazy(() => import("./Forum/ForumContainer"));
 const MessagesContainer = React.lazy(() =>
   import("./Messages/MessagesContainer")
 );
+const SettingsContainer = React.lazy(() =>
+  import("./Settings/SettingsContainer")
+);
 
 const Pages = () => {
   return (

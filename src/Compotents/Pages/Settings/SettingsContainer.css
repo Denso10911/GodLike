@@ -1,0 +1,30 @@
+.settings {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.settings__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings__title_one {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.settings__name,
+.settings__aboutJob,
+.settings__contacts,
+.settings__about {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.settings__form button {
+  width: 10%;
+  margin: 0 auto;
+}

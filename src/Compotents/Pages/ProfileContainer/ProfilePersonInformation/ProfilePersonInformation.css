@@ -1,0 +1,31 @@
+.profile {
+  display: grid;
+  grid-template-areas:
+    "A B"
+    "C B";
+  gap: 20px;
+  grid-template-columns: 300px auto;
+  grid-template-rows: 300px auto;
+}
+
+.profile__photo {
+  grid-area: A;
+  width: auto;
+  height: 300px;
+}
+
+.profile__information {
+  grid-area: B;
+}
+
+.profile__lookingForAJob {
+  grid-area: C;
+}
+
+.profile__name {
+  font-size: 30px;
+}
+
+.profile__contacts {
+  margin-top: 15px;
+}

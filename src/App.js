@@ -10,6 +10,7 @@ import {
   faMedal,
   faHeart,
   faCamera,
+  faCog,
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 import Header from "./Compotents/Header/Header";
@@ -49,7 +50,8 @@ library.add(
   faFire,
   faMedal,
   faHeart,
-  faCamera
+  faCamera,
+  faCog
 );
 
 let mapStateToProps = (state) => ({

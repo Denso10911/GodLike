@@ -97,31 +97,42 @@ export const changeMyPhoto = (img) => {
 export const getProfileThunk = (userId) => (dispatch) => {
   dispatch(setFetching(true));
   profileAPI.getProfile(userId).then((response) => {
-    //Функция которая делает запрос на сервер
-    dispatch(setUserInformation(response.data)); // Колбек функция которая диспатчит информацию о конкретном пользователе
+    dispatch(setUserInformation(response.data));
     dispatch(setFetching(false));
   });
 };
+
 export const getUserStatusThunk = (userId) => (dispatch) => {
   profileAPI.getStatus(userId).then((response) => {
-    //Функция которая делает запрос на сервер
-    dispatch(setUserStatus(response.data)); // Колбек функция которая диспатчит информацию о конкретном пользователе
+    dispatch(setUserStatus(response.data));
   });
 };
+
 export const updateUserStatusThunk = (status) => (dispatch) => {
   profileAPI.updateStatus(status).then((response) => {
     if (response.data.resultCode === 0) {
-      //Функция которая делает запрос на сервер
-      dispatch(setUserStatus(status)); // Колбек функция которая диспатчит информацию о конкретном пользователе
+      dispatch(setUserStatus(status));
     }
   });
 };
+
 export const changeMyPhotoThunk = (img) => (dispatch) => {
   profileAPI.changeMyPhoto(img).then((response) => {
     if (response.data.resultCode === 0) {
       dispatch(changeMyPhoto(response.data.data.photos));
     }
   });
+};
+
+export const putProfileThunk = (profile) => (dispatch) => {
+  debugger;
+  dispatch(setFetching(true));
+  profileAPI.putProfile(profile).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(getProfileThunk(profile.userId));
+    }
+  });
+  dispatch(setFetching(false));
 };
 
 export default ProfileReducer;

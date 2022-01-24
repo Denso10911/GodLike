@@ -1,27 +1,7 @@
-.profile {
+.profileData {
   width: 80%;
   margin: 0 auto;
   margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.profile__photo {
-  width: 200px;
-}
-
-.profile__photo img {
-  width: 100%;
-}
-
-.profile__information {
-  width: calc(100% - 220px);
-  padding-left: 20px;
-}
-
-.profile__name {
-  font-size: 2em;
-  margin-bottom: 20px;
 }
 
 .profilePosts {

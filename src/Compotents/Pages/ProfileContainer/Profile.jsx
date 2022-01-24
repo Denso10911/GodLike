@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Fetching from "../../../assets/Fetching/Fetching";
 import "./Profile.css";
 import ProfilePersonInformation from "./ProfilePersonInformation/ProfilePersonInformation";
@@ -10,7 +11,7 @@ const Profile = (props) => {
 
   return (
     <>
-      <div className='profile'>
+      <div className='profileData'>
         <ProfilePersonInformation
           profile={props.profile}
           status={props.status}
