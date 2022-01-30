@@ -4,15 +4,10 @@ import MainPage from "./MainPage/MainPage";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./ProfileContainer/ProfileContainer";
 import Fetching from "../../assets/Fetching/Fetching";
-const LoginFormContainer = React.lazy(() =>
-  import("../LoginForm/LoginFormContainer")
-);
+import LoginFormContainer from "../LoginForm/LoginFormContainer";
 const ForumContainer = React.lazy(() => import("./Forum/ForumContainer"));
 const MessagesContainer = React.lazy(() =>
   import("./Messages/MessagesContainer")
-);
-const SettingsContainer = React.lazy(() =>
-  import("./Settings/SettingsContainer")
 );
 
 const Pages = () => {
@@ -21,10 +16,10 @@ const Pages = () => {
       <Route exact path='/' component={MainPage} />
       <Route path={"/profile/:userId?"} component={ProfileContainer} />
       <Route path='/friends' component={UsersContainer} />
+      <Route path='/login' component={LoginFormContainer} />
       <Suspense fallback={<Fetching />}>
         <Route path='/forum' component={ForumContainer} />
         <Route path='/messages' component={MessagesContainer} />
-        <Route path='/login' component={LoginFormContainer} />
       </Suspense>
     </Switch>
   );

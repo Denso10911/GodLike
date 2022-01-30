@@ -1,0 +1,81 @@
+$formHoverCollor: rgb(199, 63, 59);
+
+@mixin inputStile {
+  color: white;
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  width: 100%;
+}
+
+@mixin inputHoverStile {
+  border-bottom: 1px solid $formHoverCollor;
+}
+
+.settings {
+  width: 80%;
+  margin-top: 20px;
+
+  .settings__form {
+    width: 100%;
+  }
+
+  .settings__button {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 0 0 5px;
+    transition: all 0.5s ease;
+    @include inputStile;
+
+    &:hover {
+      color: rgb(199, 63, 59);
+      @include inputHoverStile;
+    }
+  }
+
+  .settings__point {
+    margin-bottom: 5px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+
+    &:hover {
+      .settings__title_three,
+      .settings__title_four {
+        transition: all 0.5s ease;
+        color: $formHoverCollor;
+      }
+    }
+
+    .settings__title_three,
+    h4 {
+      width: 150px;
+    }
+
+    input {
+      transition: all 0.5s ease;
+      width: 100%;
+      @include inputStile;
+      &:hover {
+        @include inputHoverStile;
+      }
+      &:focus-visible {
+        outline: none;
+        border-bottom: 1px solid $formHoverCollor;
+      }
+    }
+
+    h4 {
+      text-align: right;
+    }
+  }
+
+  .settings__point_checkbox {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    input {
+      width: auto;
+    }
+  }
+}

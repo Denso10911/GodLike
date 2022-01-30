@@ -29,3 +29,9 @@
 .profile__contacts {
   margin-top: 15px;
 }
+
+.profile__header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}

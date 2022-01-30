@@ -3,7 +3,7 @@ import React from "react";
 import usersPhoto from "../../../../Users/UsersImg/users.jpg";
 import "./MyProfilePhoto.css";
 
-export default (props) => {
+const MyProfilePhoto = (props) => {
   const handleImageChange = (e) => {
     props.changeMyPhotoThunk(e.target.files[0]);
   };
@@ -17,7 +17,7 @@ export default (props) => {
         />
       </div>
       <div className='myProfile__photo_change'>
-        <label for='file-upload' className='custom__fileUpload'>
+        <label htmlFor='file-upload' className='custom__fileUpload'>
           <FontAwesomeIcon icon={"camera"} /> Custom Upload
         </label>
         <input
@@ -31,3 +31,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default MyProfilePhoto;

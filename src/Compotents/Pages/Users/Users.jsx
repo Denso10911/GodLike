@@ -13,11 +13,10 @@ const Users = (props) => {
         currentPage={props.currentPage}
         onChangePageClick={props.onChangePageClick}
       />
-
       <div className='users'>
         {props.users.map((u) => (
           <div className='user' key={u.id}>
-            <User userInfo={u} />
+            <User userInfo={u} setFetching={props.setFetching} />
             <FollowButtons
               userInfo={u}
               unFollowThunk={props.unFollowThunk}

@@ -5,6 +5,7 @@ import {
   followThunk,
   getUsersThunk,
   changePageThunk,
+  setFetching,
 } from "../../../Redux/UsersReducer";
 import Users from "./Users";
 import Fetching from "../../../assets/Fetching/Fetching";
@@ -27,7 +28,6 @@ class UsersContainer extends React.Component {
 
   onChangePageClick = (selectedPage) => {
     let selected = selectedPage.selected;
-    console.log(selected);
     // Функция принимающая в параметре номер страници, делает запрос на сервер и возвращает пользователей этой страници
     this.props.changePageThunk(selected, this.props.pageSize);
   };
@@ -37,7 +37,11 @@ class UsersContainer extends React.Component {
       <>
         {this.props.isFetching && <Fetching />}
         {!this.props.isFetching && (
-          <Users {...this.props} onChangePageClick={this.onChangePageClick} />
+          <Users
+            {...this.props}
+            onChangePageClick={this.onChangePageClick}
+            setFetching={this.props.setFetching}
+          />
         )}
       </>
     );
@@ -62,6 +66,7 @@ export default compose(
     followThunk,
     getUsersThunk,
     changePageThunk,
+    setFetching,
   }),
   withAuthRedirecrt
 )(UsersContainer);

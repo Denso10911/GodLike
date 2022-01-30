@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
@@ -14,43 +14,33 @@ import {
 } from "../../../Redux/ProfileReducer";
 import Profile from "./Profile";
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    let userId = this.props.match.params.userId;
+const ProfileContainer = (props) => {
+  useEffect(() => {
+    let userId = props.match.params.userId;
     if (!userId) {
-      userId = this.props.myId;
+      userId = props.myId;
     }
-    this.props.getProfileThunk(userId);
-    this.props.getUserStatusThunk(userId);
-  }
+    props.getProfileThunk(userId);
+    props.getUserStatusThunk(userId);
+  }, [props.match.params.userId]);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.match.params.userId !== this.props.match.params.userId) {
-      this.props.getProfileThunk(this.props.myId);
-      this.props.getUserStatusThunk(this.props.myId);
-    }
-  }
-
-  render() {
+  if (props.isFetching) {
+    return <Fetching />;
+  } else {
     return (
-      <>
-        {this.props.isFetching && <Fetching />}
-        {!this.props.isFetching && (
-          <Profile
-            profile={this.props.profile}
-            status={this.props.status}
-            updateUserStatusThunk={this.props.updateUserStatusThunk}
-            myId={this.props.myId}
-            posts={this.props.posts}
-            setMyNewPost={this.props.setMyNewPost}
-            deleteMyPost={this.props.deleteMyPost}
-            changeMyPhotoThunk={this.props.changeMyPhotoThunk}
-          />
-        )}
-      </>
+      <Profile
+        profile={props.profile}
+        status={props.status}
+        updateUserStatusThunk={props.updateUserStatusThunk}
+        myId={props.myId}
+        posts={props.posts}
+        setMyNewPost={props.setMyNewPost}
+        deleteMyPost={props.deleteMyPost}
+        changeMyPhotoThunk={props.changeMyPhotoThunk}
+      />
     );
   }
-}
+};
 
 let mapStateToProps = (state) => {
   return {

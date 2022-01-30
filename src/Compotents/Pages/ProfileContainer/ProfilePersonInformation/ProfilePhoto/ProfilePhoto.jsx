@@ -2,7 +2,7 @@ import React from "react";
 import usersPhoto from "../../../Users/UsersImg/users.jpg";
 import MyProfilePhoto from "./MyProgilePhoto/MyProfilePhoto";
 
-export default (props) => {
+const ProfilePhoto = (props) => {
   if (props.myId !== props.userId) {
     return (
       <img
@@ -19,3 +19,5 @@ export default (props) => {
     );
   }
 };
+
+export default ProfilePhoto;

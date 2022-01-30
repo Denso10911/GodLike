@@ -2,14 +2,18 @@ import React from "react";
 import ProfileContacts from "./ProfileContacts/ProfileContacts";
 import ProfileLookingForAJob from "./ProfileLookingForAJob/ProfileLookingForAJob";
 import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
-import ProfileStatusWithHook from "./ProfileStatus/ProfileStatusHook";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import "./ProfilePersonInformation.css";
 import { useState } from "react";
-import SettingsContainer from "../../Settings/SettingsContainer";
-import ProfileSettings from "../ProfileSettings/ProfileSettings";
+import ProfileSettingsInformation from "./ProfileSettingsInformation/ProfileSettingsInformation";
+import ProfileSettingsButton from "./ProfileSettingsButton/ProfileSettingsButton";
 
 const ProfilePersonInformation = (props) => {
   const [settingMod, setSettingsMod] = useState(false);
+
+  const changeSettingsMod = () => {
+    settingMod ? setSettingsMod(false) : setSettingsMod(true);
+  };
 
   return (
     <div className='profile'>
@@ -22,28 +26,41 @@ const ProfilePersonInformation = (props) => {
         />
       </div>
       <div className='profile__information'>
-        <div className='profile__name'>{props.profile.fullName}</div>
+        <div className='profile__header'>
+          <div className='profile__name'>{props.profile.fullName}</div>
+          <ProfileSettingsButton
+            settingMod={settingMod}
+            changeSettingsMod={() => changeSettingsMod()}
+            myId={props.myId}
+            userId={props.profile.userId}
+          />
+        </div>
+        <div className='profile__status'>
+          <ProfileStatus
+            userId={props.profile.userId}
+            status={props.status}
+            updateUserStatusThunk={props.updateUserStatusThunk}
+            myId={props.myId}
+          />
+        </div>
+
         {!settingMod && (
           <>
-            <ProfileSettings setSettingsMod={() => setSettingsMod(true)} />
             <ProfileContacts contacts={props.profile.contacts} />
-            <ProfileLookingForAJob />
+            <ProfileLookingForAJob
+              lookingForAJob={props.profile.lookingForAJob}
+              lookingForAJobDescription={
+                props.profile.lookingForAJobDescription
+              }
+            />
           </>
         )}
         {settingMod && (
-          <SettingsContainer
+          <ProfileSettingsInformation
             profile={props.profile}
             setSettingsMod={() => setSettingsMod(false)}
           />
         )}
-      </div>
-      <div className='profile__status'>
-        <ProfileStatusWithHook
-          userId={props.profile.userId}
-          status={props.status}
-          updateUserStatusThunk={props.updateUserStatusThunk}
-          myId={props.myId}
-        />
       </div>
     </div>
   );

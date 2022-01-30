@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Fetching from "../../../assets/Fetching/Fetching";
 import "./Profile.css";
 import ProfilePersonInformation from "./ProfilePersonInformation/ProfilePersonInformation";
