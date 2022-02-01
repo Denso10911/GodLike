@@ -7,6 +7,7 @@ const TOTAL_COUNT = "TOTAL_COUNT";
 const CURRENT_PAGE = "CURRENT_PAGE";
 const IS_FETCHING = "IS_FETCHING";
 const DO_FOLLOWING_REQUEST = "DO_FOLLOWING_REQUEST";
+const SET_PAGE_SIZE = "SET_PAGE_SIZE";
 
 let initialState = {
   users: [],
@@ -69,6 +70,14 @@ const UsersReducer = (state = initialState, action) => {
               ),
             ],
       };
+    case SET_PAGE_SIZE:
+      debugger;
+      return {
+        ...state,
+        pageSize: action.pageSize,
+        currentPage: 0,
+      };
+
     default:
       return state;
   }
@@ -95,6 +104,10 @@ export const setTotalUsersCount = (totalUsersCount) => ({
 export const setFetching = (isFetching) => ({
   type: IS_FETCHING,
   isFetching,
+});
+export const setPageSize = (pageSize) => ({
+  type: SET_PAGE_SIZE,
+  pageSize,
 });
 
 // Thunks
@@ -142,4 +155,5 @@ export const changePageThunk = (currentPage, pageSize) => (dispatch) => {
       dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
     });
 };
+
 export default UsersReducer;

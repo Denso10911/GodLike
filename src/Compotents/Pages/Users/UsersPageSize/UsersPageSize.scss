@@ -1,0 +1,17 @@
+$formHoverCollor: rgb(199, 63, 59);
+
+.pageSize1 {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-top: 10px;
+  &__point {
+    transition: all 0.5s ease;
+    &:hover {
+      color: $formHoverCollor;
+    }
+    .active {
+      color: $formHoverCollor;
+    }
+  }
+}

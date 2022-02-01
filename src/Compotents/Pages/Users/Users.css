@@ -41,7 +41,7 @@ span {
   cursor: pointer;
 }
 .select {
-  color: #a37c7c;
+  color: rgb(199, 63, 59);
 }
 
 .user button:disabled {

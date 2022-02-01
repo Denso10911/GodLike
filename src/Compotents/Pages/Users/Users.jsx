@@ -3,10 +3,15 @@ import FollowButtons from "./FollowButtons/FollowButtons";
 import User from "./User/User";
 import "./Users.css";
 import UsersPages from "./UsersPages/UsersPages";
+import UsersPageSize from "./UsersPageSize/UsersPageSize";
 
 const Users = (props) => {
   return (
     <div className='users_page'>
+      <UsersPageSize
+        setPageSize={props.setPageSize}
+        pageSize={props.pageSize}
+      />
       <UsersPages
         totalUsersCount={props.totalUsersCount}
         pageSize={props.pageSize}
