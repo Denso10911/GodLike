@@ -12,6 +12,8 @@ import {
   faCamera,
   faCog,
   faTimes,
+  faTh,
+  faGripLines,
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 import Header from "./Compotents/Header/Header";
@@ -53,7 +55,9 @@ library.add(
   faHeart,
   faCamera,
   faCog,
-  faTimes
+  faTimes,
+  faTh,
+  faGripLines
 );
 
 let mapStateToProps = (state) => ({

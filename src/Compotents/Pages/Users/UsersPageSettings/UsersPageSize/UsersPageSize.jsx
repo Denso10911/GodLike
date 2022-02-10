@@ -2,7 +2,6 @@ import React from "react";
 import "./UsersPageSize.scss";
 
 const UsersPageSize = (props) => {
-  const activePageSize = () => {};
   const pageSizeVariants = [5, 10, 50, 100];
   const handlePageSize = (size) => {
     props.setPageSize(size);
@@ -10,6 +9,7 @@ const UsersPageSize = (props) => {
 
   return (
     <div className='pageSize'>
+      <h4>Page size</h4>
       {pageSizeVariants.map((size) => {
         return (
           <div className='pageSize__point' key={size}>

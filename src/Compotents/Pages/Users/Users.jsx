@@ -3,14 +3,16 @@ import FollowButtons from "./FollowButtons/FollowButtons";
 import User from "./User/User";
 import "./Users.css";
 import UsersPages from "./UsersPages/UsersPages";
-import UsersPageSize from "./UsersPageSize/UsersPageSize";
+import UsersPageSettings from "./UsersPageSettings/UsersPageSettings";
 
 const Users = (props) => {
   return (
     <div className='users_page'>
-      <UsersPageSize
+      <UsersPageSettings
         setPageSize={props.setPageSize}
         pageSize={props.pageSize}
+        setPageStyle={props.setPageStyle}
+        pageStyle={props.pageStyle}
       />
       <UsersPages
         totalUsersCount={props.totalUsersCount}
@@ -18,7 +20,7 @@ const Users = (props) => {
         currentPage={props.currentPage}
         onChangePageClick={props.onChangePageClick}
       />
-      <div className='users'>
+      <div className={props.pageStyle ? "users-blocks" : "users-lines"}>
         {props.users.map((u) => (
           <div className='user' key={u.id}>
             <User userInfo={u} setFetching={props.setFetching} />

@@ -38,43 +38,42 @@ export const setCaptcha = (captcha) => ({
   captcha,
 });
 
-export const authMeThunk = () => (dispatch) => {
-  return authAPI.getAuth().then((response) => {
-    if (response.data.resultCode === 0) {
-      let { id, login, email } = response.data.data;
-      dispatch(setLoginUserData(id, login, email, true));
-    }
-  });
+export const authMeThunk = () => async (dispatch) => {
+  let response = await authAPI.getAuth();
+  if (response.data.resultCode === 0) {
+    let { id, login, email } = response.data.data;
+    dispatch(setLoginUserData(id, login, email, true));
+  }
 };
 
-export const authLoginThunk = (value) => (dispatch) => {
-  authAPI.postAuthLogin(value).then((response) => {
-    if (response.data.resultCode === 0) {
+export const authLoginThunk = (value) => async (dispatch) => {
+  let response = await authAPI.postAuthLogin(value);
+  switch (response.data.resultCode) {
+    case 0:
       dispatch(authMeThunk());
-    } else if (response.data.resultCode === 10) {
+      break;
+    case 10:
       dispatch(setCaptchaThunk());
-    } else {
+      break;
+    default:
       let message =
         response.data.messages.length > 0
           ? response.data.messages[0]
           : "Some Error";
       dispatch(stopSubmit("login", { _error: message }));
-    }
-  });
+  }
 };
 
-export const authDeleteLoginThunk = () => (dispatch) => {
-  authAPI.deleteAuthLogin().then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setLoginUserData(null, null, null, false));
-    }
-  });
+export const authDeleteLoginThunk = () => async (dispatch) => {
+  let response = await authAPI.deleteAuthLogin();
+  if (response.data.resultCode === 0) {
+    dispatch(setLoginUserData(null, null, null, false));
+  }
 };
 
-export const setCaptchaThunk = () => (dispatch) => {
-  captchaAPI.getCaptcha().then((response) => {
-    dispatch(setCaptcha(response.data.url));
-  });
+export const setCaptchaThunk = () => async (dispatch) => {
+  let response = await captchaAPI.getCaptcha();
+  dispatch(setCaptcha(response.data.url));
 };
 
 export default LoginReducer;

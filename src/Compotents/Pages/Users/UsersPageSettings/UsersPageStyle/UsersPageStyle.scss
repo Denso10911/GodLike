@@ -1,0 +1,14 @@
+.usersPage__style {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  div {
+    transition: all 0.5s ease;
+
+    &:hover {
+      color: rgb(199, 63, 59);
+    }
+  }
+}

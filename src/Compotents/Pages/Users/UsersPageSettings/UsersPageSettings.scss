@@ -1,0 +1,33 @@
+.usersPage__settings {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 30%;
+  justify-content: center;
+  transition: all 0.5s ease;
+
+  &:hover {
+    .usersPage__setContent {
+      transition: all 1s ease;
+      height: 250px;
+    }
+  }
+}
+
+.usersPage__title {
+  text-align: center;
+  &:hover {
+    svg {
+      transform: rotateZ(60deg);
+      transition: all 0.5s ease;
+    }
+  }
+}
+
+.usersPage__setContent {
+  transition: all 0.5s ease;
+  height: 0px;
+}

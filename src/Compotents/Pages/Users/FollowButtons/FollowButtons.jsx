@@ -7,7 +7,7 @@ const FollowButtons = (props) => {
     statusOfFallowingRequest: props.statusOfFallowingRequest,
   };
   return (
-    <div>
+    <>
       {props.userInfo.followed ? (
         <FollowButton
           followingThunk={props.unFollowThunk}
@@ -23,7 +23,7 @@ const FollowButtons = (props) => {
           {...forButtonProps}
         />
       )}
-    </div>
+    </>
   );
 };
 

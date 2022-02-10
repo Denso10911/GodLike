@@ -94,44 +94,38 @@ export const changeMyPhoto = (img) => {
 
 //thunks
 
-export const getProfileThunk = (userId) => (dispatch) => {
+export const getProfileThunk = (userId) => async (dispatch) => {
   dispatch(setFetching(true));
-  profileAPI.getProfile(userId).then((response) => {
-    dispatch(setUserInformation(response.data));
-    dispatch(setFetching(false));
-  });
+  let response = await profileAPI.getProfile(userId);
+  dispatch(setUserInformation(response.data));
+  dispatch(setFetching(false));
 };
 
-export const getUserStatusThunk = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId).then((response) => {
-    dispatch(setUserStatus(response.data));
-  });
+export const getUserStatusThunk = (userId) => async (dispatch) => {
+  let response = await profileAPI.getStatus(userId);
+  dispatch(setUserStatus(response.data));
 };
 
-export const updateUserStatusThunk = (status) => (dispatch) => {
-  profileAPI.updateStatus(status).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setUserStatus(status));
-    }
-  });
+export const updateUserStatusThunk = (status) => async (dispatch) => {
+  let response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(setUserStatus(status));
+  }
 };
 
-export const changeMyPhotoThunk = (img) => (dispatch) => {
-  profileAPI.changeMyPhoto(img).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(changeMyPhoto(response.data.data.photos));
-    }
-  });
+export const changeMyPhotoThunk = (img) => async (dispatch) => {
+  let response = await profileAPI.changeMyPhoto(img);
+  if (response.data.resultCode === 0) {
+    dispatch(changeMyPhoto(response.data.data.photos));
+  }
 };
 
-export const putProfileThunk = (profile) => (dispatch) => {
-  debugger;
+export const putProfileThunk = (profile) => async (dispatch) => {
   dispatch(setFetching(true));
-  profileAPI.putProfile(profile).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(getProfileThunk(profile.userId));
-    }
-  });
+  let response = await profileAPI.putProfile(profile);
+  if (response.data.resultCode === 0) {
+    dispatch(getProfileThunk(profile.userId));
+  }
   dispatch(setFetching(false));
 };
 

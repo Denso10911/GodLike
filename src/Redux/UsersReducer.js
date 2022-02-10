@@ -8,6 +8,7 @@ const CURRENT_PAGE = "CURRENT_PAGE";
 const IS_FETCHING = "IS_FETCHING";
 const DO_FOLLOWING_REQUEST = "DO_FOLLOWING_REQUEST";
 const SET_PAGE_SIZE = "SET_PAGE_SIZE";
+const SET_USERS_PAGE_STYLE = "SET_USERS_PAGE_STYLE";
 
 let initialState = {
   users: [],
@@ -16,6 +17,7 @@ let initialState = {
   currentPage: 0,
   isFetching: false,
   statusOfFallowingRequest: [],
+  pageStyle: true,
 };
 const UsersReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -71,18 +73,21 @@ const UsersReducer = (state = initialState, action) => {
             ],
       };
     case SET_PAGE_SIZE:
-      debugger;
       return {
         ...state,
         pageSize: action.pageSize,
         currentPage: 0,
+      };
+    case SET_USERS_PAGE_STYLE:
+      return {
+        ...state,
+        pageStyle: action.pageStyle,
       };
 
     default:
       return state;
   }
 };
-
 export const followUser = (id) => ({ type: FOLLOW, id });
 export const unFollowUser = (id) => ({ type: UNFOLLOW, id });
 export const setUsers = (users) => ({ type: SET_USERS, users });
@@ -109,51 +114,46 @@ export const setPageSize = (pageSize) => ({
   type: SET_PAGE_SIZE,
   pageSize,
 });
-
+export const setPageStyle = (pageStyle) => ({
+  type: SET_USERS_PAGE_STYLE,
+  pageStyle,
+});
 // Thunks
 
-export const unFollowThunk = (userId) => (dispatch) => {
+export const unFollowThunk = (userId) => async (dispatch) => {
   dispatch(doFollowingRequest(true, userId));
-  usersAPI.deleteFollow(userId).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(unFollowUser(userId));
-    }
-    dispatch(doFollowingRequest(false, userId));
-  });
+  let response = await usersAPI.deleteFollow(userId);
+  if (response.data.resultCode === 0) {
+    dispatch(unFollowUser(userId));
+  }
+  dispatch(doFollowingRequest(false, userId));
 };
 
-export const followThunk = (userId) => (dispatch) => {
+export const followThunk = (userId) => async (dispatch) => {
   dispatch(doFollowingRequest(true, userId));
-  usersAPI.postFollow(userId).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(followUser(userId));
-    }
-    dispatch(doFollowingRequest(false, userId));
-  });
+  let response = await usersAPI.postFollow(userId);
+  if (response.data.resultCode === 0) {
+    dispatch(followUser(userId));
+  }
+  dispatch(doFollowingRequest(false, userId));
 };
 
-export const getUsersThunk = (pageSize, currentPage) => (dispatch) => {
+export const getUsersThunk = (pageSize, currentPage) => async (dispatch) => {
   dispatch(setFetching(true)); //Во время начала запроса отображается крутилка
   const getCurrentPage = currentPage + 1;
-  usersAPI
-    .getUsers(pageSize, getCurrentPage) //Функция которая делает запрос на сервер
-    .then((response) => {
-      dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей страници по дефолту
-      dispatch(setTotalUsersCount(response.data.totalCount)); // Колбек функция которая диспатчит общую сумму пользователей
-      dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
-    });
+  let response = await usersAPI.getUsers(pageSize, getCurrentPage); //Функция которая делает запрос на сервер
+  dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей страници по дефолту
+  dispatch(setTotalUsersCount(response.data.totalCount)); // Колбек функция которая диспатчит общую сумму пользователей
+  dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
 };
 
-export const changePageThunk = (currentPage, pageSize) => (dispatch) => {
+export const changePageThunk = (currentPage, pageSize) => async (dispatch) => {
   const getCurrentPage = currentPage + 1;
   dispatch(setFetching(true)); //Во время начала запроса отображается крутилка
   dispatch(setCurrentPage(currentPage)); //Колбек функция которая диспатчит выбраную страницу
-  usersAPI
-    .getUsers(pageSize, getCurrentPage) //Функция которая делает запрос на сервер
-    .then((response) => {
-      dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей выбраной страници
-      dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
-    });
+  let response = await usersAPI.getUsers(pageSize, getCurrentPage); //Функция которая делает запрос на сервер
+  dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей выбраной страници
+  dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
 };
 
 export default UsersReducer;

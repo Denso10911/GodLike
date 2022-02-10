@@ -7,6 +7,7 @@ import {
   changePageThunk,
   setFetching,
   setPageSize,
+  setPageStyle,
 } from "../../../Redux/UsersReducer";
 import Users from "./Users";
 import Fetching from "../../../assets/Fetching/Fetching";
@@ -48,6 +49,8 @@ class UsersContainer extends React.Component {
             onChangePageClick={this.onChangePageClick}
             setFetching={this.props.setFetching}
             setPageSize={this.props.setPageSize}
+            setPageStyle={this.props.setPageStyle}
+            pageStyle={this.props.pageStyle}
           />
         )}
       </>
@@ -60,6 +63,7 @@ const mapStateToProps = (state) => {
     users: getUsers(state),
     totalUsersCount: getTotalUsersCount(state),
     pageSize: getPageSize(state),
+    pageStyle: state.usersPage.pageStyle,
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
     statusOfFallowingRequest: getStatusOfFallowingRequest(state),
@@ -75,6 +79,7 @@ export default compose(
     changePageThunk,
     setFetching,
     setPageSize,
+    setPageStyle,
   }),
   withAuthRedirecrt
 )(UsersContainer);
