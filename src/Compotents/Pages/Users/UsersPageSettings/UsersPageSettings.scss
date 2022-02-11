@@ -2,22 +2,29 @@
   display: flex;
   flex-direction: column;
   width: 150px;
-  overflow: hidden;
-  position: fixed;
+  position: absolute;
+  height: 100%;
+  // float: left;
   right: 0;
-  top: 30%;
-  justify-content: center;
+  top: 20px;
   transition: all 0.5s ease;
+
+  .usersPage__setContent {
+    opacity: 0;
+  }
 
   &:hover {
     .usersPage__setContent {
       transition: all 1s ease;
       height: 250px;
+      opacity: 1;
     }
   }
 }
 
 .usersPage__title {
+  position: sticky;
+  top: 30px;
   text-align: center;
   &:hover {
     svg {
@@ -28,6 +35,8 @@
 }
 
 .usersPage__setContent {
+  position: sticky;
+  top: 50px;
   transition: all 0.5s ease;
   height: 0px;
 }

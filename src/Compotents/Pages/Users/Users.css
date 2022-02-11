@@ -1,14 +1,36 @@
+.users_page {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 10px;
+  grid-template-rows: 50px auto;
+  grid-template-areas:
+    "A A"
+    "C B";
+  min-height: 80vh;
+}
+
+.usersPage__settings {
+  grid-area: B;
+}
+
+.usersPage__pages {
+  grid-area: A;
+}
+
 .users-blocks {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
+  grid-area: C;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .users-blocks .user {
   margin: 1.25524vw auto;
   border: 1px solid white;
   width: 30%;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,6 +38,7 @@
 
 .users-lines {
   display: flex;
+  grid-area: C;
   width: 70%;
   flex-direction: column;
   margin: 0 auto;

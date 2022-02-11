@@ -4,13 +4,14 @@ import "./UsersPages.css";
 
 const UsersPages = (props) => {
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
+  console.log(props.currentPage);
+  console.log(pageCount);
   return (
-    <div className='pages'>
+    <>
       <ReactPaginate
         pageCount={pageCount}
         onPageChange={props.onChangePageClick}
-        forcePage={props.currentPage}
+        forcePage={props.currentPage - 1}
         renderOnZeroPageCount={null}
         pageRangeDisplayed={5}
         marginPagesDisplayed={2}
@@ -23,7 +24,7 @@ const UsersPages = (props) => {
         pageLinkClassName='pages__link'
         activeClassName='select'
       />
-    </div>
+    </>
   );
 };
 

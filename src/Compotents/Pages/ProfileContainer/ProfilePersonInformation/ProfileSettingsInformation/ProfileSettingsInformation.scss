@@ -72,7 +72,7 @@ $formHoverCollor: rgb(199, 63, 59);
 
   .settings__point_checkbox {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     input {
       width: auto;

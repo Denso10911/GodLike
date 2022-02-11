@@ -6,7 +6,7 @@ import "./UsersPageSettings.scss";
 
 const UsersPageSettings = (props) => {
   return (
-    <div className='usersPage__settings'>
+    <>
       <h2 className='usersPage__title'>
         <FontAwesomeIcon icon={"cog"} />
       </h2>
@@ -20,7 +20,7 @@ const UsersPageSettings = (props) => {
           pageStyle={props.pageStyle}
         />
       </div>
-    </div>
+    </>
   );
 };
 

@@ -8,18 +8,22 @@ import UsersPageSettings from "./UsersPageSettings/UsersPageSettings";
 const Users = (props) => {
   return (
     <div className='users_page'>
-      <UsersPageSettings
-        setPageSize={props.setPageSize}
-        pageSize={props.pageSize}
-        setPageStyle={props.setPageStyle}
-        pageStyle={props.pageStyle}
-      />
-      <UsersPages
-        totalUsersCount={props.totalUsersCount}
-        pageSize={props.pageSize}
-        currentPage={props.currentPage}
-        onChangePageClick={props.onChangePageClick}
-      />
+      <div className='usersPage__settings'>
+        <UsersPageSettings
+          setPageSize={props.setPageSize}
+          pageSize={props.pageSize}
+          setPageStyle={props.setPageStyle}
+          pageStyle={props.pageStyle}
+        />
+      </div>
+      <div className='usersPage__pages'>
+        <UsersPages
+          totalUsersCount={props.totalUsersCount}
+          pageSize={props.pageSize}
+          currentPage={props.currentPage}
+          onChangePageClick={props.onChangePageClick}
+        />
+      </div>
       <div className={props.pageStyle ? "users-blocks" : "users-lines"}>
         {props.users.map((u) => (
           <div className='user' key={u.id}>

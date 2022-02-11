@@ -3,6 +3,7 @@ import { usersAPI } from "../api/api";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_LAZY_USERS = "SET_LAZY_USERS";
 const TOTAL_COUNT = "TOTAL_COUNT";
 const CURRENT_PAGE = "CURRENT_PAGE";
 const IS_FETCHING = "IS_FETCHING";
@@ -14,7 +15,7 @@ let initialState = {
   users: [],
   totalUsersCount: 20,
   pageSize: 5,
-  currentPage: 0,
+  currentPage: 1,
   isFetching: false,
   statusOfFallowingRequest: [],
   pageStyle: true,
@@ -46,6 +47,12 @@ const UsersReducer = (state = initialState, action) => {
         ...state,
         users: [...action.users],
       };
+    case SET_LAZY_USERS:
+      return {
+        ...state,
+        users: [...state.users, ...action.users],
+        currentPage: action.currentPage,
+      };
     case TOTAL_COUNT:
       return {
         ...state,
@@ -76,14 +83,13 @@ const UsersReducer = (state = initialState, action) => {
       return {
         ...state,
         pageSize: action.pageSize,
-        currentPage: 0,
+        currentPage: 1,
       };
     case SET_USERS_PAGE_STYLE:
       return {
         ...state,
         pageStyle: action.pageStyle,
       };
-
     default:
       return state;
   }
@@ -91,6 +97,11 @@ const UsersReducer = (state = initialState, action) => {
 export const followUser = (id) => ({ type: FOLLOW, id });
 export const unFollowUser = (id) => ({ type: UNFOLLOW, id });
 export const setUsers = (users) => ({ type: SET_USERS, users });
+export const setLazyUsers = (users, currentPage) => ({
+  type: SET_LAZY_USERS,
+  users,
+  currentPage,
+});
 export const doFollowingRequest = (statusOfFallowingRequest, userId) => ({
   type: DO_FOLLOWING_REQUEST,
   statusOfFallowingRequest,
@@ -130,6 +141,7 @@ export const unFollowThunk = (userId) => async (dispatch) => {
 };
 
 export const followThunk = (userId) => async (dispatch) => {
+  console.log("start");
   dispatch(doFollowingRequest(true, userId));
   let response = await usersAPI.postFollow(userId);
   if (response.data.resultCode === 0) {
@@ -140,18 +152,24 @@ export const followThunk = (userId) => async (dispatch) => {
 
 export const getUsersThunk = (pageSize, currentPage) => async (dispatch) => {
   dispatch(setFetching(true)); //Во время начала запроса отображается крутилка
-  const getCurrentPage = currentPage + 1;
-  let response = await usersAPI.getUsers(pageSize, getCurrentPage); //Функция которая делает запрос на сервер
+  // const getCurrentPage = currentPage + 1;
+  let response = await usersAPI.getUsers(pageSize, currentPage); //Функция которая делает запрос на сервер
   dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей страници по дефолту
   dispatch(setTotalUsersCount(response.data.totalCount)); // Колбек функция которая диспатчит общую сумму пользователей
   dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
 };
 
+export const getLazyUsersThunk =
+  (pageSize, currentPage) => async (dispatch) => {
+    const currentLazyPage = currentPage + 1;
+    let response = await usersAPI.getUsers(pageSize, currentLazyPage);
+    dispatch(setLazyUsers(response.data.items, currentLazyPage));
+  };
+
 export const changePageThunk = (currentPage, pageSize) => async (dispatch) => {
-  const getCurrentPage = currentPage + 1;
   dispatch(setFetching(true)); //Во время начала запроса отображается крутилка
   dispatch(setCurrentPage(currentPage)); //Колбек функция которая диспатчит выбраную страницу
-  let response = await usersAPI.getUsers(pageSize, getCurrentPage); //Функция которая делает запрос на сервер
+  let response = await usersAPI.getUsers(pageSize, currentPage); //Функция которая делает запрос на сервер
   dispatch(setUsers(response.data.items)); // Колбек функция которая диспатчит пользователей выбраной страници
   dispatch(setFetching(false)); //После получения ответа сервера крутилка исчезает
 };

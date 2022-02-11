@@ -8,6 +8,7 @@ import {
   setFetching,
   setPageSize,
   setPageStyle,
+  getLazyUsersThunk,
 } from "../../../Redux/UsersReducer";
 import Users from "./Users";
 import Fetching from "../../../assets/Fetching/Fetching";
@@ -22,6 +23,8 @@ import {
   getTotalUsersCount,
   getUsers,
 } from "../../../Redux/UsersSelectors";
+import ScollLoad from "../../../assets/ScrollLoad/ScollLoad";
+import "./UsersContainer.css";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -35,7 +38,8 @@ class UsersContainer extends React.Component {
   }
 
   onChangePageClick = (selectedPage) => {
-    let selected = selectedPage.selected;
+    console.log(selectedPage);
+    let selected = selectedPage.selected + 1;
     this.props.changePageThunk(selected, this.props.pageSize);
   };
 
@@ -44,14 +48,21 @@ class UsersContainer extends React.Component {
       <>
         {this.props.isFetching && <Fetching />}
         {!this.props.isFetching && (
-          <Users
-            {...this.props}
-            onChangePageClick={this.onChangePageClick}
-            setFetching={this.props.setFetching}
-            setPageSize={this.props.setPageSize}
-            setPageStyle={this.props.setPageStyle}
-            pageStyle={this.props.pageStyle}
-          />
+          <ScollLoad
+            getLazyUsersThunk={this.props.getLazyUsersThunk}
+            currentPage={this.props.currentPage}
+            pageSize={this.props.pageSize}
+            totalUsersCount={this.props.totalUsersCount}
+          >
+            <Users
+              {...this.props}
+              onChangePageClick={this.onChangePageClick}
+              setFetching={this.props.setFetching}
+              setPageSize={this.props.setPageSize}
+              setPageStyle={this.props.setPageStyle}
+              pageStyle={this.props.pageStyle}
+            />
+          </ScollLoad>
         )}
       </>
     );
@@ -80,6 +91,7 @@ export default compose(
     setFetching,
     setPageSize,
     setPageStyle,
+    getLazyUsersThunk,
   }),
   withAuthRedirecrt
 )(UsersContainer);
