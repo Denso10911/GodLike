@@ -22,6 +22,7 @@ const User = (props) => {
       </div>
       <div className='aboutUser__infrmation'>
         <div className='aboutUser__fullName'>{props.userInfo.name}</div>
+        <div className='aboutUser__id'>{props.userInfo.id}</div>
         <div className='aboutUser__country'>
           {props.userInfo.country != null ? props.userInfo.country : "God"}
         </div>

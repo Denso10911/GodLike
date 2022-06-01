@@ -24,7 +24,6 @@ import {
   getUsers,
 } from "../../../Redux/UsersSelectors";
 import ScollLoad from "../../../assets/ScrollLoad/ScollLoad";
-import "./UsersContainer.css";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -53,6 +52,7 @@ class UsersContainer extends React.Component {
             currentPage={this.props.currentPage}
             pageSize={this.props.pageSize}
             totalUsersCount={this.props.totalUsersCount}
+            users={this.props.users}
           >
             <Users
               {...this.props}

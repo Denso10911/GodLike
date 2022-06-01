@@ -4,8 +4,6 @@ import "./UsersPages.css";
 
 const UsersPages = (props) => {
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  console.log(props.currentPage);
-  console.log(pageCount);
   return (
     <>
       <ReactPaginate
